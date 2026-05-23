@@ -1,8 +1,35 @@
 @import "tailwindcss";
 
 :root {
+  --background: #f6f2ea;
+  --foreground: #111111;
+  --muted: #69645d;
+  --soft: #3f3a34;
+  --card: rgba(255, 255, 255, 0.72);
+  --pill: rgba(17, 17, 17, 0.06);
+  --border: rgba(17, 17, 17, 0.12);
+  --header: rgba(246, 242, 234, 0.84);
+  --inverse: #090909;
+  --primary: #111111;
+  --primary-text: #ffffff;
+  --accent: #4d7c0f;
+  --accent-soft: rgba(77, 124, 15, 0.12);
+}
+
+:root[data-theme="dark"] {
   --background: #090909;
   --foreground: #ffffff;
+  --muted: #a1a1aa;
+  --soft: #d4d4d8;
+  --card: rgba(255, 255, 255, 0.04);
+  --pill: rgba(255, 255, 255, 0.08);
+  --border: rgba(255, 255, 255, 0.12);
+  --header: rgba(9, 9, 9, 0.86);
+  --inverse: #090909;
+  --primary: #ffffff;
+  --primary-text: #090909;
+  --accent: #d9f99d;
+  --accent-soft: rgba(217, 249, 157, 0.1);
 }
 
 @theme inline {
@@ -34,4 +61,92 @@ a {
 ::selection {
   background: #d9f99d;
   color: #090909;
+}
+
+.surface-page {
+  background:
+    radial-gradient(circle at top right, var(--accent-soft), transparent 34rem),
+    radial-gradient(circle at 10% 8%, rgba(59, 130, 246, 0.08), transparent 28rem),
+    var(--background);
+  color: var(--foreground);
+}
+
+.surface-card {
+  background: var(--card);
+}
+
+.surface-pill {
+  background: var(--pill);
+}
+
+.border-subtle {
+  border-color: var(--border);
+}
+
+.text-main {
+  color: var(--foreground);
+}
+
+.text-muted {
+  color: var(--muted);
+}
+
+.text-soft {
+  color: var(--soft);
+}
+
+.text-inverse {
+  color: var(--inverse);
+}
+
+.button-primary {
+  background: var(--primary);
+  color: var(--primary-text);
+}
+
+.site-header {
+  background: var(--header);
+  border-color: var(--border);
+}
+
+.logo-link,
+.nav-links a {
+  color: var(--foreground);
+}
+
+.nav-links a {
+  opacity: 0.68;
+}
+
+.nav-links a:hover {
+  opacity: 1;
+}
+
+.header-cta,
+.theme-toggle {
+  border-color: var(--border);
+  color: var(--foreground);
+}
+
+.header-cta:hover,
+.theme-toggle:hover {
+  border-color: var(--foreground);
+  background: var(--foreground);
+  color: var(--background);
+}
+
+:root:not([data-theme="dark"]) .text-lime-200 {
+  color: #4d7c0f;
+}
+
+:root:not([data-theme="dark"]) .bg-lime-200 {
+  background: #d9f99d;
+}
+
+:root:not([data-theme="dark"]) .hero-visual-card {
+  background: linear-gradient(145deg, #ffffff, #f1eadf 55%, #d9f99d);
+}
+
+:root[data-theme="dark"] .hero-visual-card {
+  background: linear-gradient(145deg, #1f2937, #0a0a0a 55%, #84cc16);
 }

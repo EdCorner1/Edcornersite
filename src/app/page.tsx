@@ -11,7 +11,7 @@ import { VideoWall } from "@/components/VideoWall";
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-[#090909] text-white">
+    <main className="min-h-screen surface-page text-main">
       <Header />
       <Hero />
       <BrandStrip />
