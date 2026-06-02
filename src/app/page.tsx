@@ -29,50 +29,51 @@ const brandLogos = [
   },
 ];
 
-const featuredVideos = [
-  "https://edcorner.co.uk/wp-content/uploads/2026/05/Snapchat-885877959.mp4#t=0",
-  "https://edcorner.co.uk/wp-content/uploads/2026/05/0-to-car.mov#t=0",
-  "https://edcorner.co.uk/wp-content/uploads/2026/04/Airalo-Video-2-916-No-captions-With-Endscreen.mov#t=0",
-];
-
-const techVideos = [
-  "https://edcorner.co.uk/wp-content/uploads/2026/01/Detris-Today.m4v#t=0",
-  "https://edcorner.co.uk/wp-content/uploads/2026/01/Pipo-AI-Day-3.mp4#t=0",
-  "https://edcorner.co.uk/wp-content/uploads/2026/01/b33f8fccf3642c8cb8fb3783c39f400b-1.mp4#t=0",
-  "https://edcorner.co.uk/wp-content/uploads/2026/01/b5c75a8a67327a81e15ad0e17658aa8d.mp4#t=0",
-  "https://edcorner.co.uk/wp-content/uploads/2026/01/Detris.m4v#t=0",
-  "https://edcorner.co.uk/wp-content/uploads/2026/04/Snapchat-1787621788.mp4#t=0",
-  "https://edcorner.co.uk/wp-content/uploads/2026/05/0-to-car.mov#t=0",
-  "https://edcorner.co.uk/wp-content/uploads/2026/04/Airalo-Video-2-916-No-captions-With-Endscreen.mov#t=0",
-];
-
-
-const airaloBlobVideos = [
-  "UGC Content/Clients/Airalo/Video 1 - Airport 9-16.mov",
+const featuredBlobVideos = [
+  "UGC Content/Clients/Pingo/Snapchat-1007477723.mp4",
+  "UGC Content/Clients/Clawbite/0-to-car.mov",
   "UGC Content/Clients/Airalo/airalo 2 - Footie! 9-16 - Captions.mov",
 ];
 
-const healthFitnessBlobVideos: string[] = [
-  // Add exact Blob pathnames here once uploaded, e.g.
-  // "UGC Content/Clients/Client Name/video-name.mp4",
-];
-
 const blobVideoUrl = (pathname: string) => `/api/blob-video?pathname=${encodeURIComponent(pathname)}`;
+const blobVideoUrls = (pathnames: string[]) => pathnames.map(blobVideoUrl);
 
-const travelVideos = airaloBlobVideos.map(blobVideoUrl);
-const healthFitnessVideos = healthFitnessBlobVideos.map(blobVideoUrl);
-
-const languageVideos = [
-  "https://edcorner.co.uk/wp-content/uploads/2026/01/Pipo-AI-Day-3.mp4#t=0",
-  "https://edcorner.co.uk/wp-content/uploads/2026/01/b33f8fccf3642c8cb8fb3783c39f400b-1.mp4#t=0",
-  "https://edcorner.co.uk/wp-content/uploads/2026/01/b5c75a8a67327a81e15ad0e17658aa8d.mp4#t=0",
+const travelBlobVideos = [
+  "UGC Content/Clients/Airalo/19.6_Video1_PinkShell_Ed.mp4",
+  "UGC Content/Clients/Airalo/airalo 2 - Footie! 9-16 - Captions.mov",
+  "UGC Content/Clients/Airalo/Video 1 - Airport 9-16.mov",
+  "UGC Content/Clients/Airalo/Video-1-with-captions.mp4",
 ];
+
+const techAiBlobVideos = [
+  "UGC Content/Clients/Clawbite/0-to-car.mov",
+  "UGC Content/Clients/Clawbite/Clawbite-Today2.m4v",
+];
+
+const languageLearningBlobVideos = [
+  "UGC Content/Clients/Pingo/Snapchat-1004537007.mp4",
+  "UGC Content/Clients/Pingo/Snapchat-1007477723.mp4",
+  "UGC Content/Clients/Pingo/Snapchat-1202039003-1.mp4",
+  "UGC Content/Clients/Pingo/Snapchat-785767472.mp4",
+];
+
+const healthFitnessBlobVideos = [
+  "UGC Content/Clients/Pipo AI/Pipo-AI-Day-10-V4.mp4",
+  "UGC Content/Clients/Pipo AI/Pipo-AI-Day-11-V2.mp4",
+  "UGC Content/Clients/Pipo AI/Pipoday6.mp4",
+];
+
+const featuredVideos = blobVideoUrls(featuredBlobVideos);
+const travelVideos = blobVideoUrls(travelBlobVideos);
+const techAiVideos = blobVideoUrls(techAiBlobVideos);
+const languageLearningVideos = blobVideoUrls(languageLearningBlobVideos);
+const healthFitnessVideos = blobVideoUrls(healthFitnessBlobVideos);
 
 const portfolioCategories = [
   { label: "All", videos: [] },
-  { label: "Tech and AI", videos: techVideos },
+  { label: "Tech & AI", videos: techAiVideos },
   { label: "Travel", videos: travelVideos },
-  { label: "Language Learning", videos: languageVideos },
+  { label: "Language Learning", videos: languageLearningVideos },
   { label: "Health & Fitness", videos: healthFitnessVideos },
 ];
 
