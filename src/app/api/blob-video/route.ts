@@ -1,7 +1,7 @@
 import { get } from "@vercel/blob";
 import { NextRequest, NextResponse } from "next/server";
 
-const ALLOWED_PREFIXES = ["UGC Content/Clients/Airalo/"];
+const ALLOWED_PREFIXES = ["UGC Content/Clients/"];
 
 function isAllowedPathname(pathname: string) {
   return ALLOWED_PREFIXES.some((prefix) => pathname.startsWith(prefix));

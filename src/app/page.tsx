@@ -52,9 +52,15 @@ const airaloBlobVideos = [
   "UGC Content/Clients/Airalo/airalo 2 - Footie! 9-16 - Captions.mov",
 ];
 
+const healthFitnessBlobVideos: string[] = [
+  // Add exact Blob pathnames here once uploaded, e.g.
+  // "UGC Content/Clients/Client Name/video-name.mp4",
+];
+
 const blobVideoUrl = (pathname: string) => `/api/blob-video?pathname=${encodeURIComponent(pathname)}`;
 
 const travelVideos = airaloBlobVideos.map(blobVideoUrl);
+const healthFitnessVideos = healthFitnessBlobVideos.map(blobVideoUrl);
 
 const languageVideos = [
   "https://edcorner.co.uk/wp-content/uploads/2026/01/Pipo-AI-Day-3.mp4#t=0",
@@ -63,9 +69,11 @@ const languageVideos = [
 ];
 
 const portfolioCategories = [
+  { label: "All", videos: [] },
   { label: "Tech and AI", videos: techVideos },
   { label: "Travel", videos: travelVideos },
   { label: "Language Learning", videos: languageVideos },
+  { label: "Health & Fitness", videos: healthFitnessVideos },
 ];
 
 const serviceCards = [
