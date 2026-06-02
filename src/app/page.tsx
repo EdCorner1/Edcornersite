@@ -1,29 +1,31 @@
+import { CalEmbed } from "@/components/CalEmbed";
 import { PortfolioVideo } from "@/components/PortfolioVideo";
+import { PortfolioTabs } from "@/components/PortfolioTabs";
 
 const brandLogos = [
   {
     alt: "Detris AI",
-    src: "https://edcorner.co.uk/wp-content/uploads/elementor/thumbs/Detris-rldlrjfei45smq848j5zg9zvjsiska8b8lrcyqv0o0.png",
+    src: "/assets/brands/detris.png",
   },
   {
     alt: "Pingo",
-    src: "https://edcorner.co.uk/wp-content/uploads/elementor/thumbs/Pingo-rldb3up2rox7gxjvp6jc5lla6lnzk40q5j35plrajk.png",
+    src: "/assets/brands/pingo.png",
   },
   {
     alt: "Clawbite.com",
-    src: "https://edcorner.co.uk/wp-content/uploads/elementor/thumbs/clawbite-rldb3stee0umtpmm05q30m2cztx94pt9h9s6r1u2w0.png",
+    src: "/assets/brands/clawbite.png",
   },
   {
     alt: "Polymarket",
-    src: "https://edcorner.co.uk/wp-content/uploads/elementor/thumbs/Polymarket-ogo-rldlrkd8oy72yc6r31km0rrc56e5rzc1kqeug0tmhs.png",
+    src: "/assets/brands/polymarket.png",
   },
   {
     alt: "Language app",
-    src: "https://edcorner.co.uk/wp-content/uploads/elementor/thumbs/images-ri1kqwze7gvc7ewentqlvy6wodbhkk7v6sx5uq7uao.png",
+    src: "/assets/brands/language-app.png",
   },
   {
     alt: "Airalo",
-    src: "https://edcorner.co.uk/wp-content/uploads/elementor/thumbs/Airalo-rldb3qxq0cs26hpcb4wtvmjft26ipblst0h7shwv8g.png",
+    src: "/assets/brands/airalo.png",
   },
 ];
 
@@ -42,6 +44,25 @@ const techVideos = [
   "https://edcorner.co.uk/wp-content/uploads/2026/04/Snapchat-1787621788.mp4#t=0",
   "https://edcorner.co.uk/wp-content/uploads/2026/05/0-to-car.mov#t=0",
   "https://edcorner.co.uk/wp-content/uploads/2026/04/Airalo-Video-2-916-No-captions-With-Endscreen.mov#t=0",
+];
+
+
+const travelVideos = [
+  "https://edcorner.co.uk/wp-content/uploads/2026/05/0-to-car.mov#t=0",
+  "https://edcorner.co.uk/wp-content/uploads/2026/04/Airalo-Video-2-916-No-captions-With-Endscreen.mov#t=0",
+  "https://edcorner.co.uk/wp-content/uploads/2026/04/Snapchat-1787621788.mp4#t=0",
+];
+
+const languageVideos = [
+  "https://edcorner.co.uk/wp-content/uploads/2026/01/Pipo-AI-Day-3.mp4#t=0",
+  "https://edcorner.co.uk/wp-content/uploads/2026/01/b33f8fccf3642c8cb8fb3783c39f400b-1.mp4#t=0",
+  "https://edcorner.co.uk/wp-content/uploads/2026/01/b5c75a8a67327a81e15ad0e17658aa8d.mp4#t=0",
+];
+
+const portfolioCategories = [
+  { label: "Tech and AI", videos: techVideos },
+  { label: "Travel", videos: travelVideos },
+  { label: "Language Learning", videos: languageVideos },
 ];
 
 const serviceCards = [
@@ -71,21 +92,21 @@ const testimonials = [
       "It's been a few months now and we've seen good growth, Ed is always trying different angles and is sometimes hilarious with his ideas.",
     name: "Jay",
     role: "Founder",
-    image: "https://edcorner.co.uk/wp-content/uploads/2026/03/images.jpeg.webp",
+    image: "/assets/testimonials/jay.webp",
   },
   {
     quote:
       "Always tinkering and searching for new concepts that work, Ed has slotted straight into the team and makes some really funny content too!",
     name: "Maggie",
     role: "Creator campaign manager",
-    image: "https://edcorner.co.uk/wp-content/uploads/2026/04/Pingo.png.webp",
+    image: "/assets/testimonials/maggie.webp",
   },
   {
     quote:
       "Ed gave us some good insights not only for the content but product as well, we've iterated and learnt so much together already.",
     name: "Julie",
     role: "Campaign Manager",
-    image: "https://edcorner.co.uk/wp-content/uploads/2026/03/400x400bb-75.webp",
+    image: "/assets/testimonials/julie.webp",
   },
 ];
 
@@ -99,17 +120,7 @@ function VideoGrid({ videos }: { videos: string[] }) {
   );
 }
 
-function Tabs({ items }: { items: string[] }) {
-  return (
-    <div className="tabs" role="tablist" aria-label="Portfolio categories">
-      {items.map((item, index) => (
-        <button key={item} className={index === 0 ? "tab active" : "tab"} type="button" role="tab">
-          {item}
-        </button>
-      ))}
-    </div>
-  );
-}
+
 
 export default function Home() {
   return (
@@ -117,7 +128,7 @@ export default function Home() {
       <header className="site-header">
         <a className="logo-link" href="#content" aria-label="Ed Corner UGC">
           <img
-            src="https://edcorner.co.uk/wp-content/uploads/2026/03/Untitled-design-6-40x40.png"
+            src="/assets/profile/ed-logo.png"
             alt="Ed Corner UGC"
           />
           <span>Ed Corner</span>
@@ -136,7 +147,7 @@ export default function Home() {
         <div className="intro-row">
           <h2>Hi, I&apos;m Ed</h2>
           <img
-            src="https://edcorner.co.uk/wp-content/uploads/2026/03/cropped-Untitled-design-6.png.webp"
+            src="/assets/profile/ed-headshot.webp"
             alt=""
           />
         </div>
@@ -180,8 +191,7 @@ export default function Home() {
       </section>
 
       <section className="section-wrap portfolio-block" id="Portfolio">
-        <Tabs items={["Tech and AI", "Travel", "Language Learning"]} />
-        <VideoGrid videos={techVideos} />
+        <PortfolioTabs categories={portfolioCategories} />
       </section>
 
       <section className="testimonial-breakout" aria-label="Client reviews">
@@ -205,10 +215,7 @@ export default function Home() {
         <a className="lime-button message-button" href="mailto:Hello@edcorner.co.uk">
           Send me a message ✉️
         </a>
-        <iframe
-          title="Book a call"
-          src="https://app.cal.com/edcorner/30min/embed?layout=month_view&useSlotsViewOnSmallScreen=true&embedType=inline&embed=30min"
-        />
+        <CalEmbed />
       </section>
 
       <footer className="site-footer section-wrap">
