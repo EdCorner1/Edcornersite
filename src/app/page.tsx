@@ -47,11 +47,15 @@ const techVideos = [
 ];
 
 
-const travelVideos = [
-  "https://edcorner.co.uk/wp-content/uploads/2026/05/0-to-car.mov#t=0",
-  "https://edcorner.co.uk/wp-content/uploads/2026/04/Airalo-Video-2-916-No-captions-With-Endscreen.mov#t=0",
-  "https://edcorner.co.uk/wp-content/uploads/2026/04/Snapchat-1787621788.mp4#t=0",
+const airaloBlobVideos = [
+  "UGC/UGC clients/Airalo/0-to-car.mov",
+  "UGC/UGC clients/Airalo/Airalo-Video-2-916-No-captions-With-Endscreen.mov",
+  "UGC/UGC clients/Airalo/Snapchat-1787621788.mp4",
 ];
+
+const blobVideoUrl = (pathname: string) => `/api/blob-video?pathname=${encodeURIComponent(pathname)}`;
+
+const travelVideos = airaloBlobVideos.map(blobVideoUrl);
 
 const languageVideos = [
   "https://edcorner.co.uk/wp-content/uploads/2026/01/Pipo-AI-Day-3.mp4#t=0",

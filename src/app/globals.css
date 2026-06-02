@@ -328,28 +328,36 @@ main {
 .tabs {
   display: flex;
   justify-content: center;
-  gap: 14px;
-  margin-bottom: 50px;
+  gap: 12px;
+  margin-bottom: 46px;
 }
 
 .tab {
-  min-height: 31px;
-  border: 1px solid #a2a2a2;
-  border-radius: 20px;
-  background: #fff;
-  padding: 5px 22px;
-  color: #0c0d0e;
+  min-height: 44px;
+  border: 1px solid rgba(12, 13, 14, 0.16);
+  border-radius: 11px;
+  background: rgba(255, 255, 255, 0.74);
+  padding: 12px 24px;
+  color: #363535;
+  cursor: pointer;
   font-family: inherit;
-  font-size: 14px;
-  font-weight: 400;
+  font-size: 15px;
+  font-weight: 700;
   line-height: 1;
+  transition: border-color 180ms ease, background 180ms ease, color 180ms ease, transform 180ms ease, box-shadow 180ms ease;
+}
+
+.tab:hover {
+  border-color: rgba(12, 13, 14, 0.42);
+  transform: translateY(-1px);
 }
 
 .tab.active,
 .tab[aria-selected="true"] {
-  border-color: #0c0d0e;
-  background: #0c0d0e;
-  color: #fff;
+  border-color: var(--lime);
+  background: var(--lime);
+  color: #2f2f2f;
+  box-shadow: 0 12px 34px rgba(0, 0, 0, 0.08);
 }
 
 .services {
