@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import Script from "next/script";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -14,9 +13,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Ed Corner | UGC Creator for AI, Tech & Travel Brands",
+  title: "Ed Corner | Tech & AI UGC Creator",
   description:
-    "UGC creator helping AI, tech, travel and language-learning brands turn product value into native short-form content.",
+    "Short-form demos, explainers, and creator-led videos for AI, app, tech, and travel brands.",
 };
 
 export default function RootLayout({
@@ -26,12 +25,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${geistSans.variable} ${geistMono.variable} scroll-smooth antialiased`}>
-      <body>
-        <Script id="theme-init" strategy="beforeInteractive">
-          {`document.documentElement.dataset.theme = localStorage.getItem('theme') === 'dark' ? 'dark' : 'light';`}
-        </Script>
-        {children}
-      </body>
+      <body>{children}</body>
     </html>
   );
 }
