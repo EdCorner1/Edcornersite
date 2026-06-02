@@ -145,7 +145,7 @@ export default function Home() {
           Your new favourite <strong>AI &amp; Tech obsessed UGC creator</strong>{" "}
           from the UK with 6 years experience in all things product design, marketing &amp; conversion rate optimisation.
         </p>
-        <a className="lime-button hero-cta" href="mailto:hello@darkblue-giraffe-994309.hostingersite.com">
+        <a className="lime-button hero-cta" href="mailto:Hello@edcorner.co.uk">
           Let&apos;s talk
         </a>
       </section>
