@@ -360,6 +360,45 @@ main {
   box-shadow: 0 12px 34px rgba(0, 0, 0, 0.08);
 }
 
+.show-more-videos {
+  display: flex;
+  width: fit-content;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin: 28px auto 0;
+  border: 1px solid rgba(12, 13, 14, 0.16);
+  border-radius: 11px;
+  background: #202020;
+  color: #ffffff;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1;
+  padding: 14px 22px;
+  transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease;
+}
+
+.show-more-videos:hover {
+  background: #111111;
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.16);
+  transform: translateY(-1px);
+}
+
+.show-more-icon {
+  display: inline-flex;
+  width: 22px;
+  height: 22px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: var(--lime);
+  color: #202020;
+  font-size: 15px;
+  line-height: 1;
+}
+
 .services {
   padding: 40px 10px;
 }

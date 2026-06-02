@@ -9,6 +9,7 @@ type PortfolioCategory = {
 };
 
 const ALL_CATEGORY_LABEL = "All";
+const INITIAL_VIDEO_LIMIT = 4;
 
 function shuffleVideos(videos: string[]) {
   const dedupedVideos = Array.from(new Set(videos));
@@ -25,12 +26,15 @@ type PortfolioTabsProps = {
 
 export function PortfolioTabs({ categories }: PortfolioTabsProps) {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [isExpanded, setIsExpanded] = useState(false);
   const activeCategory = categories[activeIndex] ?? categories[0];
   const allVideos = useMemo(
     () => shuffleVideos(categories.flatMap((category) => category.videos)),
     [categories],
   );
   const activeVideos = activeCategory.label === ALL_CATEGORY_LABEL ? allVideos : activeCategory.videos;
+  const visibleVideos = isExpanded ? activeVideos : activeVideos.slice(0, INITIAL_VIDEO_LIMIT);
+  const hiddenVideoCount = Math.max(activeVideos.length - INITIAL_VIDEO_LIMIT, 0);
 
   return (
     <>
@@ -48,7 +52,10 @@ export function PortfolioTabs({ categories }: PortfolioTabsProps) {
               aria-selected={isActive}
               aria-controls="portfolio-tab-panel"
               tabIndex={isActive ? 0 : -1}
-              onClick={() => setActiveIndex(index)}
+              onClick={() => {
+                setActiveIndex(index);
+                setIsExpanded(false);
+              }}
             >
               {category.label}
             </button>
@@ -62,10 +69,25 @@ export function PortfolioTabs({ categories }: PortfolioTabsProps) {
         role="tabpanel"
         aria-labelledby={`portfolio-tab-${activeIndex}`}
       >
-        {activeVideos.map((src, index) => (
+        {visibleVideos.map((src, index) => (
           <PortfolioVideo key={`${activeCategory.label}-${src}-${index}`} src={src} />
         ))}
       </div>
+
+      {hiddenVideoCount > 0 && (
+        <button
+          className="show-more-videos"
+          type="button"
+          aria-expanded={isExpanded}
+          aria-controls="portfolio-tab-panel"
+          onClick={() => setIsExpanded((current) => !current)}
+        >
+          <span>{isExpanded ? "Show less" : `See ${hiddenVideoCount} more`}</span>
+          <span className="show-more-icon" aria-hidden="true">
+            {isExpanded ? "↑" : "↓"}
+          </span>
+        </button>
+      )}
     </>
   );
 }
