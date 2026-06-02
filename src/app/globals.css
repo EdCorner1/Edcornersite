@@ -768,7 +768,75 @@ main {
     font-size: 15px;
   }
 
+  .featured-videos .portfolio-video-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 6px;
+  }
+
+  .featured-videos .video-play-button {
+    width: 38px;
+    height: 38px;
+    border-radius: 9px;
+    font-size: 15px;
+  }
+
+  .portfolio-block {
+    padding-top: 28px;
+  }
+
+  .tabs {
+    justify-content: flex-start;
+    gap: 7px;
+    margin-bottom: 26px;
+  }
+
+  .tab {
+    min-height: 38px;
+    padding: 10px 13px;
+    font-size: 12px;
+  }
+
+  .portfolio-block .portfolio-video-grid {
+    max-width: min(100%, 320px);
+  }
+
+  .portfolio-block .portfolio-video-shell {
+    max-height: 520px;
+  }
+
+  .show-more-videos {
+    margin-top: 18px;
+    padding: 12px 18px;
+    font-size: 14px;
+  }
+
+  .testimonial-breakout {
+    padding-top: 46px;
+    padding-bottom: 58px;
+  }
+
+  .contact {
+    min-height: 0;
+    padding-bottom: 28px;
+  }
+
+  .contact h2 {
+    font-size: clamp(32px, 10vw, 46px);
+    line-height: 1.06;
+  }
+
   .message-button {
-    font-size: 25px;
+    width: 100%;
+    min-height: 54px;
+    font-size: 20px;
+  }
+
+  .cal-embed-wrap {
+    margin-top: 18px;
+  }
+
+  .cal-inline {
+    min-height: 560px;
+    border-radius: 11px;
   }
 }
