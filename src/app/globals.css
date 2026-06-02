@@ -7,6 +7,7 @@
   --muted: #4a4a4a;
   --black: #1a1a1a;
   --lime: #ccff00;
+  --lime-hover: #b8ea00;
 }
 
 * {
@@ -36,6 +37,52 @@ button,
 a,
 video {
   -webkit-tap-highlight-color: transparent;
+}
+
+.book-button,
+.lime-button,
+.tab,
+.video-play-button,
+.show-more-videos,
+.cal-fallback {
+  transform: translateZ(0) scale(1);
+  transition: transform 180ms ease, background 180ms ease, border-color 180ms ease, color 180ms ease, box-shadow 180ms ease;
+}
+
+.book-button:hover,
+.lime-button:hover,
+.tab:hover,
+.video-play-button:hover,
+.show-more-videos:hover,
+.cal-fallback:hover {
+  transform: translateY(-1px) scale(1.04);
+}
+
+.book-button:hover,
+.lime-button:hover,
+.tab.active:hover,
+.tab[aria-selected="true"]:hover {
+  background: var(--lime-hover);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .book-button,
+  .lime-button,
+  .tab,
+  .video-play-button,
+  .show-more-videos,
+  .cal-fallback {
+    transition: none;
+  }
+
+  .book-button:hover,
+  .lime-button:hover,
+  .tab:hover,
+  .video-play-button:hover,
+  .show-more-videos:hover,
+  .cal-fallback:hover {
+    transform: none;
+  }
 }
 
 main {
@@ -344,12 +391,10 @@ main {
   font-size: 15px;
   font-weight: 700;
   line-height: 1;
-  transition: border-color 180ms ease, background 180ms ease, color 180ms ease, transform 180ms ease, box-shadow 180ms ease;
 }
 
 .tab:hover {
   border-color: rgba(12, 13, 14, 0.42);
-  transform: translateY(-1px);
 }
 
 .tab.active,
@@ -377,13 +422,11 @@ main {
   font-weight: 700;
   line-height: 1;
   padding: 14px 22px;
-  transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease;
 }
 
 .show-more-videos:hover {
   background: #111111;
   box-shadow: 0 14px 34px rgba(0, 0, 0, 0.16);
-  transform: translateY(-1px);
 }
 
 .show-more-icon {
@@ -607,6 +650,7 @@ main {
   width: 100%;
   min-height: 650px;
   overflow: hidden;
+  border: 0;
   border-radius: 18px;
   background: #ffffff;
 }

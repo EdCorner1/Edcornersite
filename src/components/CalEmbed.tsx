@@ -17,6 +17,7 @@ declare global {
 const CAL_NAMESPACE = "30min";
 const CAL_LINK = "edcorner/30min";
 const CAL_SCRIPT_SRC = "https://app.cal.com/embed/embed.js";
+const CAL_EMBED_URL = "https://cal.com/edcorner/30min?embed=&theme=light&layout=month_view";
 
 export function CalEmbed() {
   useEffect(() => {
@@ -65,7 +66,13 @@ export function CalEmbed() {
 
   return (
     <div className="cal-embed-wrap">
-      <div id="cal-inline-30min" className="cal-inline" />
+      <iframe
+        id="cal-inline-30min"
+        className="cal-inline"
+        title="Book a call with Ed Corner"
+        src={CAL_EMBED_URL}
+        loading="lazy"
+      />
       <a className="cal-fallback" href="https://cal.com/edcorner/30min" target="_blank" rel="noreferrer">
         Open booking calendar in a new tab
       </a>

@@ -70,7 +70,7 @@ export function PortfolioTabs({ categories }: PortfolioTabsProps) {
         aria-labelledby={`portfolio-tab-${activeIndex}`}
       >
         {visibleVideos.map((src, index) => (
-          <PortfolioVideo key={`${activeCategory.label}-${src}-${index}`} src={src} />
+          <PortfolioVideo key={`${activeCategory.label}-${src}-${index}`} src={src} eager={index === 0} />
         ))}
       </div>
 

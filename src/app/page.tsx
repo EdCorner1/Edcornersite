@@ -30,9 +30,9 @@ const brandLogos = [
 ];
 
 const featuredBlobVideos = [
-  "UGC Content/Clients/Pingo/Snapchat-1007477723.mp4",
-  "UGC Content/Clients/Clawbite/0-to-car.mov",
-  "UGC Content/Clients/Airalo/airalo 2 - Footie! 9-16 - Captions.mov",
+  "UGC Content/Clients/Pingo/Snapchat-785767472.mp4",
+  "UGC Content/Clients/Pipo AI/Pipo-AI-Day-11-V2.mp4",
+  "UGC Content/Clients/Airalo/Video-1-with-captions.mp4",
 ];
 
 const blobVideoUrl = (pathname: string) => `/api/blob-video?pathname=${encodeURIComponent(pathname)}`;
@@ -126,7 +126,7 @@ function VideoGrid({ videos }: { videos: string[] }) {
   return (
     <div className="portfolio-video-grid">
       {videos.map((src, index) => (
-        <PortfolioVideo key={`${src}-${index}`} src={src} />
+        <PortfolioVideo key={`${src}-${index}`} src={src} eager={index === 0} />
       ))}
     </div>
   );

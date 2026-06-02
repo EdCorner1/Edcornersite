@@ -4,9 +4,10 @@ import { useRef, useState } from "react";
 
 type PortfolioVideoProps = {
   src: string;
+  eager?: boolean;
 };
 
-export function PortfolioVideo({ src }: PortfolioVideoProps) {
+export function PortfolioVideo({ src, eager = false }: PortfolioVideoProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [hasStarted, setHasStarted] = useState(false);
 
@@ -23,7 +24,7 @@ export function PortfolioVideo({ src }: PortfolioVideoProps) {
         src={src}
         controls={hasStarted}
         playsInline
-        preload="metadata"
+        preload={eager ? "auto" : "none"}
         onPlay={() => setHasStarted(true)}
       />
       {!hasStarted ? (
