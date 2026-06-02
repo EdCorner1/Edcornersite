@@ -48,9 +48,8 @@ const techVideos = [
 
 
 const airaloBlobVideos = [
-  "UGC/UGC clients/Airalo/0-to-car.mov",
-  "UGC/UGC clients/Airalo/Airalo-Video-2-916-No-captions-With-Endscreen.mov",
-  "UGC/UGC clients/Airalo/Snapchat-1787621788.mp4",
+  "UGC Content/Clients/Airalo/Video 1 - Airport 9-16.mov",
+  "UGC Content/Clients/Airalo/airalo 2 - Footie! 9-16 - Captions.mov",
 ];
 
 const blobVideoUrl = (pathname: string) => `/api/blob-video?pathname=${encodeURIComponent(pathname)}`;
