@@ -2,12 +2,16 @@
 
 import { useRef, useState } from "react";
 
-type PortfolioVideoProps = {
+export type PortfolioVideoItem = {
   src: string;
+  poster?: string;
+};
+
+type PortfolioVideoProps = PortfolioVideoItem & {
   eager?: boolean;
 };
 
-export function PortfolioVideo({ src, eager = false }: PortfolioVideoProps) {
+export function PortfolioVideo({ src, poster, eager = false }: PortfolioVideoProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [hasStarted, setHasStarted] = useState(false);
 
@@ -22,6 +26,7 @@ export function PortfolioVideo({ src, eager = false }: PortfolioVideoProps) {
         ref={videoRef}
         className="portfolio-video"
         src={src}
+        poster={poster}
         controls={hasStarted}
         playsInline
         preload={eager ? "auto" : "none"}

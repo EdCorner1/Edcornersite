@@ -1,18 +1,18 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { PortfolioVideo } from "@/components/PortfolioVideo";
+import { PortfolioVideo, type PortfolioVideoItem } from "@/components/PortfolioVideo";
 
 type PortfolioCategory = {
   label: string;
-  videos: string[];
+  videos: PortfolioVideoItem[];
 };
 
 const ALL_CATEGORY_LABEL = "All";
 const INITIAL_VIDEO_LIMIT = 4;
 
-function shuffleVideos(videos: string[]) {
-  const dedupedVideos = Array.from(new Set(videos));
+function shuffleVideos(videos: PortfolioVideoItem[]) {
+  const dedupedVideos = Array.from(new Map(videos.map((video) => [video.src, video])).values());
 
   return dedupedVideos
     .map((video) => ({ video, sort: Math.random() }))
@@ -70,7 +70,12 @@ export function PortfolioTabs({ categories }: PortfolioTabsProps) {
         aria-labelledby={`portfolio-tab-${activeIndex}`}
       >
         {visibleVideos.map((src, index) => (
-          <PortfolioVideo key={`${activeCategory.label}-${src}-${index}`} src={src} eager={index === 0} />
+          <PortfolioVideo
+            key={`${activeCategory.label}-${src.src}-${index}`}
+            src={src.src}
+            poster={src.poster}
+            eager={index === 0}
+          />
         ))}
       </div>
 

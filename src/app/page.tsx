@@ -1,5 +1,5 @@
 import { CalEmbed } from "@/components/CalEmbed";
-import { PortfolioVideo } from "@/components/PortfolioVideo";
+import { PortfolioVideo, type PortfolioVideoItem } from "@/components/PortfolioVideo";
 import { PortfolioTabs } from "@/components/PortfolioTabs";
 
 const brandLogos = [
@@ -36,7 +36,19 @@ const featuredBlobVideos = [
 ];
 
 const blobVideoUrl = (pathname: string) => `/api/blob-video?pathname=${encodeURIComponent(pathname)}`;
-const blobVideoUrls = (pathnames: string[]) => pathnames.map(blobVideoUrl);
+const blobPosterUrl = (pathname: string) => {
+  const filename = pathname
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "");
+
+  return `/assets/video-posters/${filename}.jpg`;
+};
+const blobVideoItems = (pathnames: string[]) =>
+  pathnames.map((pathname) => ({
+    src: blobVideoUrl(pathname),
+    poster: blobPosterUrl(pathname),
+  }));
 
 const travelBlobVideos = [
   "UGC Content/Clients/Airalo/19.6_Video1_PinkShell_Ed.mp4",
@@ -63,11 +75,11 @@ const healthFitnessBlobVideos = [
   "UGC Content/Clients/Pipo AI/Pipoday6.mp4",
 ];
 
-const featuredVideos = blobVideoUrls(featuredBlobVideos);
-const travelVideos = blobVideoUrls(travelBlobVideos);
-const techAiVideos = blobVideoUrls(techAiBlobVideos);
-const languageLearningVideos = blobVideoUrls(languageLearningBlobVideos);
-const healthFitnessVideos = blobVideoUrls(healthFitnessBlobVideos);
+const featuredVideos = blobVideoItems(featuredBlobVideos);
+const travelVideos = blobVideoItems(travelBlobVideos);
+const techAiVideos = blobVideoItems(techAiBlobVideos);
+const languageLearningVideos = blobVideoItems(languageLearningBlobVideos);
+const healthFitnessVideos = blobVideoItems(healthFitnessBlobVideos);
 
 const portfolioCategories = [
   { label: "All", videos: [] },
@@ -122,11 +134,11 @@ const testimonials = [
   },
 ];
 
-function VideoGrid({ videos }: { videos: string[] }) {
+function VideoGrid({ videos }: { videos: PortfolioVideoItem[] }) {
   return (
     <div className="portfolio-video-grid">
       {videos.map((src, index) => (
-        <PortfolioVideo key={`${src}-${index}`} src={src} eager={index === 0} />
+        <PortfolioVideo key={`${src.src}-${index}`} src={src.src} poster={src.poster} eager={index === 0} />
       ))}
     </div>
   );

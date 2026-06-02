@@ -42,7 +42,6 @@ video {
 .book-button,
 .lime-button,
 .tab,
-.video-play-button,
 .show-more-videos,
 .cal-fallback {
   transform: translateZ(0) scale(1);
@@ -52,7 +51,6 @@ video {
 .book-button:hover,
 .lime-button:hover,
 .tab:hover,
-.video-play-button:hover,
 .show-more-videos:hover,
 .cal-fallback:hover {
   transform: translateY(-1px) scale(1.04);
@@ -69,7 +67,6 @@ video {
   .book-button,
   .lime-button,
   .tab,
-  .video-play-button,
   .show-more-videos,
   .cal-fallback {
     transition: none;
@@ -78,7 +75,6 @@ video {
   .book-button:hover,
   .lime-button:hover,
   .tab:hover,
-  .video-play-button:hover,
   .show-more-videos:hover,
   .cal-fallback:hover {
     transform: none;
@@ -350,7 +346,8 @@ main {
   display: inline-flex;
   width: 58px;
   height: 58px;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%) scale(1);
+  transform-origin: center;
   align-items: center;
   justify-content: center;
   border: 0;
@@ -361,6 +358,10 @@ main {
   font-size: 20px;
   line-height: 1;
   box-shadow: 0 12px 34px rgba(0, 0, 0, 0.22);
+}
+
+.video-play-button:hover {
+  transform: translate(-50%, -50%) scale(1.08);
 }
 
 .video-play-button span {
