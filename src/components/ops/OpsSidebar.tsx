@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { ShieldCheck } from "lucide-react";
 
 export function OpsSidebar() {
   return (
@@ -18,14 +17,6 @@ export function OpsSidebar() {
         <a href="/ops#payments">Payments</a>
         <Link href="/ops/finances">Finances</Link>
       </nav>
-
-      <div className="ops-auth-card">
-        <ShieldCheck size={18} />
-        <div>
-          <strong>Private dashboard</strong>
-          <span>Password protected and hidden from the public site</span>
-        </div>
-      </div>
     </aside>
   );
 }

@@ -4,7 +4,7 @@ import { OpsSidebar } from "./OpsSidebar";
 export function OpsLayout({ children }: { children: ReactNode }) {
   return (
     <main className="ops-shell">
-      <section className="ops-frame" aria-label="Private operations dashboard preview">
+      <section className="ops-frame" aria-label="Operations dashboard">
         <OpsSidebar />
         <div className="ops-main">{children}</div>
       </section>

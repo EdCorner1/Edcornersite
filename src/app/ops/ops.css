@@ -88,38 +88,6 @@ body:has(.ops-shell) {
   color: #363535;
 }
 
-.ops-auth-card {
-  display: flex;
-  gap: 11px;
-  margin-top: auto;
-  padding: 14px;
-  border: 1px solid var(--ops-border);
-  border-radius: 18px;
-  background: #fff;
-}
-
-.ops-auth-card svg {
-  color: var(--ops-green);
-  flex: 0 0 auto;
-}
-
-.ops-auth-card strong,
-.ops-auth-card span {
-  display: block;
-}
-
-.ops-auth-card strong {
-  margin-bottom: 4px;
-  color: var(--ops-text);
-  font-size: 13px;
-}
-
-.ops-auth-card span {
-  color: var(--ops-faint);
-  font-size: 12px;
-  line-height: 1.35;
-}
-
 .ops-main {
   min-width: 0;
   overflow: hidden;
