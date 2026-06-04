@@ -23,7 +23,7 @@ export function OpsSidebar() {
         <ShieldCheck size={18} />
         <div>
           <strong>Private dashboard</strong>
-          <span>Access restricted to hello@edcorner.co.uk</span>
+          <span>Password protected and hidden from the public site</span>
         </div>
       </div>
     </aside>
