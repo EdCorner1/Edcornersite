@@ -53,11 +53,40 @@ export type PaymentItem = {
   next?: boolean;
 };
 
+export type RevenueStatus = "Paid" | "Expected" | "To confirm" | "Pending" | "Pipeline";
+
+export type RevenueLedgerItem = {
+  id: string;
+  month: string;
+  client: string;
+  type: "Retainer" | "Weekly" | "Base" | "Project" | "Pipeline";
+  expectedEur: number;
+  actualEur: number | null;
+  original: string;
+  due: string;
+  status: RevenueStatus;
+  note: string;
+};
+
+export type FinanceAction = {
+  label: string;
+  client: string;
+  impact: string;
+  due: string;
+};
+
 export const currencySettings = {
   primary: "EUR",
   usdToEurEstimate: 0.862,
   note: "EUR is the default operating currency. Source USD is shown only where useful.",
 };
+
+export const formatEur = (amount: number) =>
+  new Intl.NumberFormat("en-IE", {
+    style: "currency",
+    currency: "EUR",
+    maximumFractionDigits: 0,
+  }).format(amount);
 
 export const clients: OpsClient[] = [
   {
@@ -158,14 +187,143 @@ export const projects: OpsProject[] = [
 ];
 
 export const monthlyGoal = {
+  targetEur: 5000,
   target: "€5,000",
+  currentEur: 2009,
   current: "~€2,009+",
+  projectedEur: 4508,
   projected: "~€4,508+",
   progress: 40,
   projectedProgress: 90,
+  gapEur: 2991,
   gap: "~€2,991",
+  projectedGapEur: 492,
   projectedGap: "~€492",
 };
+
+export const revenueLedger: RevenueLedgerItem[] = [
+  {
+    id: "2026-06-pingo-month",
+    month: "June 2026",
+    client: "Pingo AI",
+    type: "Retainer",
+    expectedEur: 775,
+    actualEur: null,
+    original: "$900 monthly minimum",
+    due: "Weekly Mondays",
+    status: "Expected",
+    note: "Minimum monthly value based on four weekly payments",
+  },
+  {
+    id: "2026-06-airalo",
+    month: "June 2026",
+    client: "Airalo",
+    type: "Retainer",
+    expectedEur: 517,
+    actualEur: null,
+    original: "$600 monthly",
+    due: "5th–11th",
+    status: "Expected",
+    note: "Renewed for the rest of summer",
+  },
+  {
+    id: "2026-06-clawbite-detris",
+    month: "June 2026",
+    client: "Clawbite + Detris",
+    type: "Retainer",
+    expectedEur: 517,
+    actualEur: null,
+    original: "$600 combined",
+    due: "After meeting",
+    status: "To confirm",
+    note: "May 20–Jun 4 period needs confirming",
+  },
+  {
+    id: "2026-06-layla-base",
+    month: "June 2026",
+    client: "Layla AI",
+    type: "Base",
+    expectedEur: 200,
+    actualEur: null,
+    original: "€200 minimum",
+    due: "Month end",
+    status: "Expected",
+    note: "Final amount depends on month-end data",
+  },
+  {
+    id: "2026-06-manus",
+    month: "June 2026",
+    client: "Manus",
+    type: "Pipeline",
+    expectedEur: 1379,
+    actualEur: null,
+    original: "~$1,600 potential",
+    due: "Onboarding TBC",
+    status: "Pipeline",
+    note: "$55/video plus bonuses; not confirmed yet",
+  },
+  {
+    id: "2026-06-layla-upside",
+    month: "June 2026",
+    client: "Layla upside",
+    type: "Pipeline",
+    expectedEur: 603,
+    actualEur: null,
+    original: "~$700 potential",
+    due: "Month end",
+    status: "Pipeline",
+    note: "View-based upside, separate from base",
+  },
+  {
+    id: "2026-06-limba",
+    month: "June 2026",
+    client: "Limba",
+    type: "Pipeline",
+    expectedEur: 517,
+    actualEur: null,
+    original: "$600 unsigned",
+    due: "Follow-up later",
+    status: "Pipeline",
+    note: "Keep warm; follow up in roughly one month",
+  },
+];
+
+const confirmedRows = revenueLedger.filter((row) => row.status !== "Pipeline");
+const pipelineRows = revenueLedger.filter((row) => row.status === "Pipeline");
+
+export const financeSummary = {
+  targetEur: monthlyGoal.targetEur,
+  landedEur: confirmedRows.reduce((total, row) => total + (row.actualEur ?? 0), 0),
+  expectedEur: confirmedRows.reduce((total, row) => total + row.expectedEur, 0),
+  pipelineEur: pipelineRows.reduce((total, row) => total + row.expectedEur, 0),
+};
+
+export const financeActions: FinanceAction[] = [
+  {
+    label: "Confirm Clawbite + Detris period",
+    client: "Clawbite + Detris",
+    impact: "~€517 expected",
+    due: "After meeting",
+  },
+  {
+    label: "Check Airalo payment window",
+    client: "Airalo",
+    impact: "~€517 expected",
+    due: "5th–11th",
+  },
+  {
+    label: "Record next Layla batch",
+    client: "Layla AI",
+    impact: "€200+ base",
+    due: "Next batch",
+  },
+  {
+    label: "Move Manus onboarding forward",
+    client: "Manus",
+    impact: "~€1,379 potential",
+    due: "Waiting on call",
+  },
+];
 
 export const summaryStats: SummaryStat[] = [
   {

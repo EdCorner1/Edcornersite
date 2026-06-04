@@ -1,6 +1,16 @@
 import Link from "next/link";
 
-export function OpsSidebar() {
+const navItems = [
+  { label: "Overview", href: "/ops#overview" },
+  { label: "Clients", href: "/ops#clients" },
+  { label: "Projects", href: "/ops#projects" },
+  { label: "Tasks", href: "/ops#tasks" },
+  { label: "Pipeline", href: "/ops#pipeline" },
+  { label: "Payments", href: "/ops#payments" },
+  { label: "Finances", href: "/ops/finances" },
+];
+
+export function OpsSidebar({ active = "Overview" }: { active?: string }) {
   return (
     <aside className="ops-sidebar" aria-label="Ops navigation">
       <Link className="ops-brand" href="/">
@@ -9,13 +19,11 @@ export function OpsSidebar() {
       </Link>
 
       <nav>
-        <a className="active" href="/ops#overview">Overview</a>
-        <a href="/ops#clients">Clients</a>
-        <a href="/ops#projects">Projects</a>
-        <a href="/ops#tasks">Tasks</a>
-        <a href="/ops#pipeline">Pipeline</a>
-        <a href="/ops#payments">Payments</a>
-        <Link href="/ops/finances">Finances</Link>
+        {navItems.map((item) => (
+          <Link className={item.label === active ? "active" : undefined} href={item.href} key={item.label}>
+            {item.label}
+          </Link>
+        ))}
       </nav>
     </aside>
   );
