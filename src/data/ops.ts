@@ -6,7 +6,7 @@ import {
   type LucideIcon,
 } from "lucide-react";
 
-export type ClientStatus = "Active" | "Batch needed" | "Meeting tomorrow";
+export type ClientStatus = "Active" | "Batch needed" | "Meeting tomorrow" | "Onboarding";
 
 export type OpsClient = {
   name: string;
@@ -125,15 +125,18 @@ export const clients: OpsClient[] = [
     payment: "€200 minimum confirmed",
     status: "Batch needed",
   },
+  {
+    name: "Manus",
+    value: "~€47/video",
+    cycle: "$55 per video plus strong view bonuses",
+    progress: 10,
+    delivered: "Onboarding today at 7pm",
+    payment: "Confirmed per-video client",
+    status: "Onboarding",
+  },
 ];
 
 export const pipeline: PipelineItem[] = [
-  {
-    name: "Manus",
-    value: "~€1,379/mo",
-    note: "~$1,600 before view bonuses; waiting on onboarding call",
-    status: "Warm lead",
-  },
   {
     name: "Layla upside",
     value: "~€603+/mo",
@@ -165,9 +168,9 @@ export const actions: OpsAction[] = [
     priority: "Medium",
   },
   {
-    label: "Follow up Manus onboarding",
-    meta: "Potential ~€47/video plus bonuses; waiting on onboarding call",
-    priority: "Medium",
+    label: "Manus onboarding at 7pm",
+    meta: "Confirmed at ~$55/video (~€47) plus strong view bonuses",
+    priority: "High",
   },
 ];
 
@@ -189,14 +192,14 @@ export const projects: OpsProject[] = [
 export const monthlyGoal = {
   targetEur: 5000,
   target: "€5,000",
-  currentEur: 2009,
-  current: "~€2,009+",
+  currentEur: 3388,
+  current: "~€3,388+",
   projectedEur: 4508,
   projected: "~€4,508+",
-  progress: 40,
+  progress: 68,
   projectedProgress: 90,
-  gapEur: 2991,
-  gap: "~€2,991",
+  gapEur: 1612,
+  gap: "~€1,612",
   projectedGapEur: 492,
   projectedGap: "~€492",
 };
@@ -254,13 +257,13 @@ export const revenueLedger: RevenueLedgerItem[] = [
     id: "2026-06-manus",
     month: "June 2026",
     client: "Manus",
-    type: "Pipeline",
+    type: "Project",
     expectedEur: 1379,
     actualEur: null,
-    original: "~$1,600 potential",
-    due: "Onboarding TBC",
-    status: "Pipeline",
-    note: "$55/video plus bonuses; not confirmed yet",
+    original: "$55/video; ~30 videos assumed for planning",
+    due: "Onboarding today at 7pm",
+    status: "Expected",
+    note: "Confirmed per-video client; strong view bonuses on top",
   },
   {
     id: "2026-06-layla-upside",
@@ -318,10 +321,10 @@ export const financeActions: FinanceAction[] = [
     due: "Next batch",
   },
   {
-    label: "Move Manus onboarding forward",
+    label: "Complete Manus onboarding",
     client: "Manus",
-    impact: "~€1,379 potential",
-    due: "Waiting on call",
+    impact: "~€47/video plus bonuses",
+    due: "Today 7pm",
   },
 ];
 
@@ -341,7 +344,7 @@ export const summaryStats: SummaryStat[] = [
   {
     label: "Pipeline",
     value: String(pipeline.length),
-    note: "Manus, Layla upside, Limba unsigned",
+    note: "Layla upside and Limba unsigned",
     icon: Film,
   },
   {
@@ -386,5 +389,5 @@ export const workload = {
   retainerCount: clients.length,
   retainerText: "Pingo AI, Airalo, Layla AI, Clawbite + Detris",
   pipelineCount: pipeline.length,
-  pipelineText: "Manus onboarding, Layla bonus upside, Limba unsigned",
+  pipelineText: "Layla bonus upside, Limba unsigned",
 };
