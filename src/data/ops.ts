@@ -126,12 +126,12 @@ export const clients: OpsClient[] = [
     status: "Batch needed",
   },
   {
-    name: "Laptop B-roll batch",
-    value: "~€517 total",
-    cycle: "$600 for 30 videos",
+    name: "Laptop B-roll retainer",
+    value: "~€517/mo + views",
+    cycle: "$600/month for 30 videos + $1 per 1k views",
     progress: 0,
     delivered: "Accepted in principle",
-    payment: "One-off batch fee",
+    payment: "Monthly retainer plus view bonus",
     status: "Batch needed",
   },
   {
@@ -149,7 +149,7 @@ export const pipeline: PipelineItem[] = [
   {
     name: "10X.app",
     value: "~€388/mo potential",
-    note: "$450/month for 30 videos, plus view bonuses and app-building coaching",
+    note: "$450/month for 30 videos, plus $1 per 1k views and app-building coaching",
     status: "Considering",
   },
   {
@@ -188,8 +188,8 @@ export const actions: OpsAction[] = [
     priority: "High",
   },
   {
-    label: "Confirm laptop B-roll batch details",
-    meta: "$600 for 30 videos (~€517); simple laptop/B-roll production",
+    label: "Confirm laptop B-roll retainer details",
+    meta: "$600/month (~€517) for 30 videos plus $1 per 1k views",
     priority: "Medium",
   },
 ];
@@ -274,13 +274,13 @@ export const revenueLedger: RevenueLedgerItem[] = [
     note: "Final amount depends on month-end data",
   },
   {
-    id: "2026-06-laptop-broll-batch",
+    id: "2026-06-laptop-broll-retainer",
     month: "June 2026",
-    client: "Laptop B-roll batch",
-    type: "Project",
+    client: "Laptop B-roll retainer",
+    type: "Retainer",
     expectedEur: 517,
     actualEur: null,
-    original: "$600 for 30 videos",
+    original: "$600/month for 30 videos + $1 per 1k views",
     due: "TBC",
     status: "Expected",
     note: "Simple laptop/B-roll production; accepted in principle",
@@ -319,7 +319,7 @@ export const revenueLedger: RevenueLedgerItem[] = [
     original: "$450/month for 30 videos",
     due: "Decision pending",
     status: "Pipeline",
-    note: "Includes view bonuses and app-building/scaling coaching",
+    note: "Includes $1 per 1k views and app-building/scaling coaching",
   },
   {
     id: "2026-06-limba",
@@ -371,9 +371,9 @@ export const financeActions: FinanceAction[] = [
     due: "Today 7pm",
   },
   {
-    label: "Confirm laptop B-roll batch terms",
-    client: "Laptop B-roll batch",
-    impact: "~€517 expected",
+    label: "Confirm laptop B-roll retainer terms",
+    client: "Laptop B-roll retainer",
+    impact: "~€517/month plus views",
     due: "TBC",
   },
 ];
@@ -437,7 +437,7 @@ export const workload = {
   attentionCount: 2,
   attentionText: "Clawbite + Detris meeting, Layla AI batch",
   retainerCount: clients.length,
-  retainerText: "Pingo AI, Airalo, Layla AI, Clawbite + Detris, Manus, laptop B-roll batch",
+  retainerText: "Pingo AI, Airalo, Layla AI, Clawbite + Detris, Manus, laptop B-roll retainer",
   pipelineCount: pipeline.length,
   pipelineText: "10X.app, Layla bonus upside, Limba unsigned",
 };
