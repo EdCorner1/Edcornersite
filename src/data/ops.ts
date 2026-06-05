@@ -22,7 +22,7 @@ export type PipelineItem = {
   name: string;
   value: string;
   note: string;
-  status: "Warm lead" | "Bonus upside" | "Unsigned";
+  status: "Warm lead" | "Bonus upside" | "Unsigned" | "Considering";
 };
 
 export type OpsAction = {
@@ -126,6 +126,15 @@ export const clients: OpsClient[] = [
     status: "Batch needed",
   },
   {
+    name: "Laptop B-roll batch",
+    value: "~€517 total",
+    cycle: "$600 for 30 videos",
+    progress: 0,
+    delivered: "Accepted in principle",
+    payment: "One-off batch fee",
+    status: "Batch needed",
+  },
+  {
     name: "Manus",
     value: "~€47/video",
     cycle: "$55 per video plus strong view bonuses",
@@ -137,6 +146,12 @@ export const clients: OpsClient[] = [
 ];
 
 export const pipeline: PipelineItem[] = [
+  {
+    name: "10X.app",
+    value: "~€388/mo potential",
+    note: "$450/month for 30 videos, plus view bonuses and app-building coaching",
+    status: "Considering",
+  },
   {
     name: "Layla upside",
     value: "~€603+/mo",
@@ -172,6 +187,11 @@ export const actions: OpsAction[] = [
     meta: "Confirmed at ~$55/video (~€47) plus strong view bonuses",
     priority: "High",
   },
+  {
+    label: "Confirm laptop B-roll batch details",
+    meta: "$600 for 30 videos (~€517); simple laptop/B-roll production",
+    priority: "Medium",
+  },
 ];
 
 export const projects: OpsProject[] = [
@@ -192,16 +212,16 @@ export const projects: OpsProject[] = [
 export const monthlyGoal = {
   targetEur: 5000,
   target: "€5,000",
-  currentEur: 3431,
-  current: "~€3,431+",
-  projectedEur: 4551,
-  projected: "~€4,551+",
-  progress: 69,
-  projectedProgress: 91,
-  gapEur: 1569,
-  gap: "~€1,569",
-  projectedGapEur: 449,
-  projectedGap: "~€449",
+  currentEur: 3948,
+  current: "~€3,948+",
+  projectedEur: 5456,
+  projected: "~€5,456+",
+  progress: 79,
+  projectedProgress: 100,
+  gapEur: 1052,
+  gap: "~€1,052",
+  projectedGapEur: 0,
+  projectedGap: "€0",
 };
 
 export const revenueLedger: RevenueLedgerItem[] = [
@@ -254,6 +274,18 @@ export const revenueLedger: RevenueLedgerItem[] = [
     note: "Final amount depends on month-end data",
   },
   {
+    id: "2026-06-laptop-broll-batch",
+    month: "June 2026",
+    client: "Laptop B-roll batch",
+    type: "Project",
+    expectedEur: 517,
+    actualEur: null,
+    original: "$600 for 30 videos",
+    due: "TBC",
+    status: "Expected",
+    note: "Simple laptop/B-roll production; accepted in principle",
+  },
+  {
     id: "2026-06-manus",
     month: "June 2026",
     client: "Manus",
@@ -276,6 +308,18 @@ export const revenueLedger: RevenueLedgerItem[] = [
     due: "Month end",
     status: "Pipeline",
     note: "View-based upside, separate from base",
+  },
+  {
+    id: "2026-06-10x-app",
+    month: "June 2026",
+    client: "10X.app",
+    type: "Pipeline",
+    expectedEur: 388,
+    actualEur: null,
+    original: "$450/month for 30 videos",
+    due: "Decision pending",
+    status: "Pipeline",
+    note: "Includes view bonuses and app-building/scaling coaching",
   },
   {
     id: "2026-06-limba",
@@ -326,6 +370,12 @@ export const financeActions: FinanceAction[] = [
     impact: "~€47/video plus bonuses",
     due: "Today 7pm",
   },
+  {
+    label: "Confirm laptop B-roll batch terms",
+    client: "Laptop B-roll batch",
+    impact: "~€517 expected",
+    due: "TBC",
+  },
 ];
 
 export const summaryStats: SummaryStat[] = [
@@ -344,7 +394,7 @@ export const summaryStats: SummaryStat[] = [
   {
     label: "Pipeline",
     value: String(pipeline.length),
-    note: "Layla upside and Limba unsigned",
+    note: "10X.app, Layla upside and Limba unsigned",
     icon: Film,
   },
   {
@@ -387,7 +437,7 @@ export const workload = {
   attentionCount: 2,
   attentionText: "Clawbite + Detris meeting, Layla AI batch",
   retainerCount: clients.length,
-  retainerText: "Pingo AI, Airalo, Layla AI, Clawbite + Detris",
+  retainerText: "Pingo AI, Airalo, Layla AI, Clawbite + Detris, Manus, laptop B-roll batch",
   pipelineCount: pipeline.length,
-  pipelineText: "Layla bonus upside, Limba unsigned",
+  pipelineText: "10X.app, Layla bonus upside, Limba unsigned",
 };
