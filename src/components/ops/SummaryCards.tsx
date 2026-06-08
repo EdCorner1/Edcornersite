@@ -1,6 +1,13 @@
-import type { SummaryStat } from "@/data/ops";
+import type { LucideIcon } from "lucide-react";
 
-export function SummaryCards({ stats }: { stats: SummaryStat[] }) {
+export type SummaryStatView = {
+  label: string;
+  value: string;
+  note: string;
+  icon: LucideIcon;
+};
+
+export function SummaryCards({ stats }: { stats: SummaryStatView[] }) {
   return (
     <section className="ops-summary-grid" id="overview" aria-label="Business overview metrics">
       {stats.map((stat) => {

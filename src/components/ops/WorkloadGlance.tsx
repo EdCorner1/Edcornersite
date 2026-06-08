@@ -1,7 +1,9 @@
 import { ArrowRight } from "lucide-react";
-import { workload } from "@/data/ops";
+import type { workload as defaultWorkload } from "@/data/ops";
 
-export function WorkloadGlance() {
+type WorkloadData = typeof defaultWorkload;
+
+export function WorkloadGlance({ workload }: { workload: WorkloadData }) {
   return (
     <section className="ops-overview-panel">
       <div className="ops-section-title">

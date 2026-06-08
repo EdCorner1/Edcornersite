@@ -8,6 +8,7 @@ const navItems = [
   { label: "Pipeline", href: "/ops#pipeline" },
   { label: "Payments", href: "/ops#payments" },
   { label: "Finances", href: "/ops/finances" },
+  { label: "Admin", href: "/ops/admin" },
 ];
 
 export function OpsSidebar({ active = "Overview" }: { active?: string }) {

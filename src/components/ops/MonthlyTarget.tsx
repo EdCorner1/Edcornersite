@@ -1,6 +1,8 @@
 import type { CSSProperties } from "react";
 import { ProgressBar } from "./ProgressBar";
-import { monthlyGoal } from "@/data/ops";
+import type { monthlyGoal as defaultMonthlyGoal } from "@/data/ops";
+
+type MonthlyGoalData = typeof defaultMonthlyGoal;
 
 function Donut({ value, confirmed = false }: { value: number; confirmed?: boolean }) {
   return (
@@ -13,7 +15,7 @@ function Donut({ value, confirmed = false }: { value: number; confirmed?: boolea
   );
 }
 
-export function MonthlyTarget() {
+export function MonthlyTarget({ monthlyGoal }: { monthlyGoal: MonthlyGoalData }) {
   return (
     <section className="ops-overview-panel monthly-goal-panel">
       <div className="ops-section-title">
@@ -41,7 +43,7 @@ export function MonthlyTarget() {
             <span>Projected</span>
             <strong>{monthlyGoal.projected}</strong>
             <ProgressBar value={monthlyGoal.projectedProgress} />
-            <p>If Layla upside and Limba land.</p>
+            <p>If Manus, Layla upside and Limba land.</p>
           </div>
         </div>
 

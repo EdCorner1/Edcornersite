@@ -1,26 +1,24 @@
-import {
-  financeActions,
-  financeSummary,
-  formatEur,
-  monthlyGoal,
-  revenueLedger,
-} from "@/data/ops";
 import { OpsLayout } from "@/components/ops/OpsLayout";
 import { OpsTopbar } from "@/components/ops/OpsTopbar";
+import { formatEur } from "@/data/ops";
+import { getFinanceSummary, getSavedOpsData } from "@/lib/ops-store";
 import "../ops.css";
 
-const landedProgress = Math.round((financeSummary.landedEur / financeSummary.targetEur) * 100);
-const expectedProgress = Math.round((financeSummary.expectedEur / financeSummary.targetEur) * 100);
-const fullPipelineProgress = Math.round(
-  ((financeSummary.expectedEur + financeSummary.pipelineEur) / financeSummary.targetEur) * 100,
-);
-const expectedGap = Math.max(financeSummary.targetEur - financeSummary.expectedEur, 0);
-const pipelineGap = Math.max(financeSummary.targetEur - financeSummary.expectedEur - financeSummary.pipelineEur, 0);
+export const dynamic = "force-dynamic";
 
-const confirmedRows = revenueLedger.filter((row) => row.status !== "Pipeline");
-const pipelineRows = revenueLedger.filter((row) => row.status === "Pipeline");
+export default async function FinancesPage() {
+  const data = await getSavedOpsData();
+  const financeSummary = getFinanceSummary(data);
+  const landedProgress = Math.round((financeSummary.landedEur / financeSummary.targetEur) * 100);
+  const expectedProgress = Math.round((financeSummary.expectedEur / financeSummary.targetEur) * 100);
+  const fullPipelineProgress = Math.round(
+    ((financeSummary.expectedEur + financeSummary.pipelineEur) / financeSummary.targetEur) * 100,
+  );
+  const expectedGap = Math.max(financeSummary.targetEur - financeSummary.expectedEur, 0);
+  const pipelineGap = Math.max(financeSummary.targetEur - financeSummary.expectedEur - financeSummary.pipelineEur, 0);
+  const confirmedRows = data.revenueLedger.filter((row) => row.status !== "Pipeline");
+  const pipelineRows = data.revenueLedger.filter((row) => row.status === "Pipeline");
 
-export default function FinancesPage() {
   return (
     <OpsLayout activeNav="Finances">
       <OpsTopbar title="Finances" label="Monthly tracking" />
@@ -33,7 +31,7 @@ export default function FinancesPage() {
         </div>
         <div className="finance-target-card">
           <span>Monthly target</span>
-          <strong>{monthlyGoal.target}</strong>
+          <strong>{data.monthlyGoal.target}</strong>
           <small>{formatEur(expectedGap)} gap from confirmed expected revenue</small>
         </div>
       </section>
@@ -137,7 +135,7 @@ export default function FinancesPage() {
           </div>
 
           <div className="finance-action-list">
-            {financeActions.map((action) => (
+            {data.financeActions.map((action) => (
               <article key={action.label}>
                 <div>
                   <strong>{action.label}</strong>
