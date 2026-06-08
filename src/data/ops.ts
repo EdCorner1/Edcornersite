@@ -143,6 +143,15 @@ export const clients: OpsClient[] = [
     payment: "Confirmed per-video client",
     status: "Onboarding",
   },
+  {
+    name: "Composio",
+    value: "~€1,552/mo",
+    cycle: "$30/video · 2 videos/day",
+    progress: 0,
+    delivered: "New client confirmed",
+    payment: "$60/day if daily output is hit",
+    status: "Active",
+  },
 ];
 
 export const pipeline: PipelineItem[] = [
@@ -186,6 +195,11 @@ export const actions: OpsAction[] = [
     meta: "$600/month (~€517) for 30 videos plus $1 per 1k views",
     priority: "Medium",
   },
+  {
+    label: "Lock Composio production rhythm",
+    meta: "$30/video at 2 videos/day — roughly $1,800/month if daily",
+    priority: "High",
+  },
 ];
 
 export const projects: OpsProject[] = [
@@ -206,14 +220,14 @@ export const projects: OpsProject[] = [
 export const monthlyGoal = {
   targetEur: 5000,
   target: "€5,000",
-  currentEur: 3948,
-  current: "~€3,948+",
-  projectedEur: 5068,
-  projected: "~€5,068+",
-  progress: 79,
+  currentEur: 5500,
+  current: "~€5,500+",
+  projectedEur: 6620,
+  projected: "~€6,620+",
+  progress: 100,
   projectedProgress: 100,
-  gapEur: 1052,
-  gap: "~€1,052",
+  gapEur: 0,
+  gap: "€0",
   projectedGapEur: 0,
   projectedGap: "€0",
 };
@@ -290,6 +304,18 @@ export const revenueLedger: RevenueLedgerItem[] = [
     due: "Onboarding today at 7pm",
     status: "Expected",
     note: "Confirmed per-video client; strong view bonuses on top",
+  },
+  {
+    id: "2026-06-composio",
+    month: "June 2026",
+    client: "Composio",
+    type: "Project",
+    expectedEur: 1552,
+    actualEur: null,
+    original: "$30/video; 2 videos/day (~$1,800/month if daily)",
+    due: "TBC",
+    status: "Expected",
+    note: "New client; daily production target is two videos",
   },
   {
     id: "2026-06-layla-upside",
@@ -413,13 +439,19 @@ export const payments: PaymentItem[] = [
     value: "€200+",
     note: "Minimum confirmed; final amount TBC",
   },
+  {
+    label: "Daily output",
+    client: "Composio",
+    value: "$60/day",
+    note: "$30/video at two videos per day",
+  },
 ];
 
 export const workload = {
-  attentionCount: 2,
-  attentionText: "Clawbite + Detris meeting, Layla AI batch",
+  attentionCount: 3,
+  attentionText: "Composio daily output, Clawbite + Detris meeting, Layla AI batch",
   retainerCount: clients.length,
-  retainerText: "Pingo AI, Airalo, Layla AI, Clawbite + Detris, Manus, laptop B-roll retainer",
+  retainerText: "Pingo AI, Airalo, Layla AI, Clawbite + Detris, Manus, Composio, laptop B-roll retainer",
   pipelineCount: pipeline.length,
   pipelineText: "Layla bonus upside and Limba unsigned",
 };
