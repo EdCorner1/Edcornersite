@@ -147,12 +147,6 @@ export const clients: OpsClient[] = [
 
 export const pipeline: PipelineItem[] = [
   {
-    name: "10X.app",
-    value: "~€388/mo potential",
-    note: "$450/month for 30 videos, plus $1 per 1k views and app-building coaching",
-    status: "Considering",
-  },
-  {
     name: "Layla upside",
     value: "~€603+/mo",
     note: "Potential extra from views, on top of €200 base",
@@ -214,8 +208,8 @@ export const monthlyGoal = {
   target: "€5,000",
   currentEur: 3948,
   current: "~€3,948+",
-  projectedEur: 5456,
-  projected: "~€5,456+",
+  projectedEur: 5068,
+  projected: "~€5,068+",
   progress: 79,
   projectedProgress: 100,
   gapEur: 1052,
@@ -310,18 +304,6 @@ export const revenueLedger: RevenueLedgerItem[] = [
     note: "View-based upside, separate from base",
   },
   {
-    id: "2026-06-10x-app",
-    month: "June 2026",
-    client: "10X.app",
-    type: "Pipeline",
-    expectedEur: 388,
-    actualEur: null,
-    original: "$450/month for 30 videos",
-    due: "Decision pending",
-    status: "Pipeline",
-    note: "Includes $1 per 1k views and app-building/scaling coaching",
-  },
-  {
     id: "2026-06-limba",
     month: "June 2026",
     client: "Limba",
@@ -394,7 +376,7 @@ export const summaryStats: SummaryStat[] = [
   {
     label: "Pipeline",
     value: String(pipeline.length),
-    note: "10X.app, Layla upside and Limba unsigned",
+    note: "Layla upside and Limba unsigned",
     icon: Film,
   },
   {
@@ -439,5 +421,5 @@ export const workload = {
   retainerCount: clients.length,
   retainerText: "Pingo AI, Airalo, Layla AI, Clawbite + Detris, Manus, laptop B-roll retainer",
   pipelineCount: pipeline.length,
-  pipelineText: "10X.app, Layla bonus upside, Limba unsigned",
+  pipelineText: "Layla bonus upside and Limba unsigned",
 };

@@ -123,7 +123,7 @@ export default function FinancesPage() {
             <article className="finance-gap-card">
               <span>Confirmed gap</span>
               <strong>{formatEur(expectedGap)}</strong>
-              <small>Gap before 10X.app, Layla upside and Limba.</small>
+              <small>Gap before Layla upside and Limba.</small>
             </article>
           </div>
         </div>

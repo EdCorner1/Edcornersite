@@ -41,7 +41,7 @@ export function MonthlyTarget() {
             <span>Projected</span>
             <strong>{monthlyGoal.projected}</strong>
             <ProgressBar value={monthlyGoal.projectedProgress} />
-            <p>If 10X.app, Layla upside and Limba land.</p>
+            <p>If Layla upside and Limba land.</p>
           </div>
         </div>
 
