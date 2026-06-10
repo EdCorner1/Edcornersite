@@ -5,6 +5,8 @@ export const brandLogos = [
   "Detris AI",
   "Polymarket",
   "Limba",
+  "Manus",
+  "Composio",
 ];
 
 export const testimonials = [

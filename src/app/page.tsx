@@ -27,6 +27,14 @@ const brandLogos = [
     alt: "Airalo",
     src: "/assets/brands/airalo.png",
   },
+  {
+    alt: "Manus",
+    src: "/assets/brands/manus.png",
+  },
+  {
+    alt: "Composio",
+    src: "/assets/brands/composio.png",
+  },
 ];
 
 const featuredBlobVideos = [
