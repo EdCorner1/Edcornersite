@@ -168,7 +168,7 @@ export default function Home() {
         <nav aria-label="Primary Site Navigation">
           <a href="#Portfolio">Portfolio</a>
         </nav>
-        <a className="book-button" href="#GetInTouch">Book a call with me</a>
+        <a className="book-button" href="#GetInTouch">Book a call</a>
       </header>
 
       <section className="hero section-wrap">
@@ -189,7 +189,7 @@ export default function Home() {
           from the UK with 6 years experience in all things product design, marketing &amp; conversion rate optimisation.
         </p>
         <a className="lime-button hero-cta" href="mailto:Hello@edcorner.co.uk">
-          Let&apos;s talk
+          Book a call
         </a>
       </section>
 

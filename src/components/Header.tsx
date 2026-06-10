@@ -14,7 +14,7 @@ export function Header() {
           href="https://calendly.com/edcorner"
           className="rounded-full bg-slate-950 px-4 py-2 text-sm font-semibold text-white transition hover:bg-slate-800 dark:bg-white dark:text-slate-950 dark:hover:bg-zinc-100"
         >
-          Work with me
+          Book a call
         </a>
       </div>
     </header>

@@ -30,7 +30,7 @@ export function Hero() {
               href="https://calendly.com/edcorner"
               className="inline-flex items-center justify-center gap-2 rounded-full bg-slate-950 px-7 py-4 text-sm font-semibold text-white shadow-xl shadow-slate-950/15 transition hover:-translate-y-0.5 hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-slate-950 focus:ring-offset-2 dark:bg-white dark:text-slate-950 dark:hover:bg-zinc-100 dark:focus:ring-white dark:focus:ring-offset-zinc-950"
             >
-              Work with me
+              Book a call
               <ArrowRight className="h-4 w-4" aria-hidden="true" />
             </a>
             <a
