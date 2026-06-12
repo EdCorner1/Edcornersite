@@ -188,7 +188,7 @@ export default function Home() {
           Your new favourite <strong>AI &amp; Tech obsessed UGC creator</strong>{" "}
           from the UK with 6 years experience in all things product design, marketing &amp; conversion rate optimisation.
         </p>
-        <a className="lime-button hero-cta" href="mailto:Hello@edcorner.co.uk">
+        <a className="lime-button hero-cta" href="#GetInTouch">
           Book a call
         </a>
       </section>
@@ -251,7 +251,7 @@ export default function Home() {
       </section>
 
       <footer className="site-footer section-wrap">
-        <p>Made with good food, energy and Wordpress</p>
+        <p>Made with good food and energy</p>
       </footer>
     </main>
   );
