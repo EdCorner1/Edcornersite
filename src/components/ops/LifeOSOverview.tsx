@@ -1,6 +1,4 @@
-import Link from "next/link";
 import type { CSSProperties } from "react";
-import { ArrowRight } from "lucide-react";
 import { formatEur, type LifeOSData } from "@/data/ops";
 
 const statusLabels = {
@@ -32,7 +30,6 @@ export function LifeOSOverview({ lifeOS }: { lifeOS: LifeOSData }) {
           <p>Life OS</p>
           <h2>Today&apos;s operating score</h2>
         </div>
-        <Link href="/ops/life-os">View Life OS <ArrowRight size={14} /></Link>
       </div>
 
       <div className="life-overview-grid">
