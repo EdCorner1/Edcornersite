@@ -75,6 +75,53 @@ export type FinanceAction = {
   due: string;
 };
 
+export type HabitStatus = "done" | "pending" | "partial" | "missed";
+
+export type HabitItem = {
+  id: string;
+  label: string;
+  category: "Fitness" | "Nutrition" | "Lifestyle" | "Work";
+  target: string;
+  status: HabitStatus;
+  currentStreak: number;
+  bestStreak: number;
+  week: HabitStatus[];
+};
+
+export type PurchaseGoal = {
+  id: string;
+  label: string;
+  targetEur: number;
+  savedEur: number;
+  deadline: string;
+  note: string;
+  priority: "High" | "Medium" | "Low";
+};
+
+export type RevenueAllocation = {
+  label: string;
+  amountEur: number;
+  note: string;
+};
+
+export type LifeOSData = {
+  currentDateLabel: string;
+  dailyScore: {
+    completed: number;
+    total: number;
+    percentage: number;
+  };
+  habits: HabitItem[];
+  purchaseGoals: PurchaseGoal[];
+  revenueTarget: {
+    currentTargetEur: number;
+    stretchTargetEur: number;
+    expectedBaseEur: number;
+    bonusEstimateEur: number | null;
+  };
+  allocations: RevenueAllocation[];
+};
+
 export const currencySettings = {
   primary: "EUR",
   usdToEurEstimate: 0.862,
@@ -87,6 +134,149 @@ export const formatEur = (amount: number) =>
     currency: "EUR",
     maximumFractionDigits: 0,
   }).format(amount);
+
+export const lifeOS: LifeOSData = {
+  currentDateLabel: "Launch week",
+  dailyScore: {
+    completed: 0,
+    total: 8,
+    percentage: 0,
+  },
+  habits: [
+    {
+      id: "run-5k",
+      label: "5km run",
+      category: "Fitness",
+      target: "Daily",
+      status: "pending",
+      currentStreak: 0,
+      bestStreak: 0,
+      week: ["pending", "pending", "pending", "pending", "pending", "pending", "pending"],
+    },
+    {
+      id: "press-ups",
+      label: "100 press-ups",
+      category: "Fitness",
+      target: "Daily",
+      status: "pending",
+      currentStreak: 0,
+      bestStreak: 0,
+      week: ["pending", "pending", "pending", "pending", "pending", "pending", "pending"],
+    },
+    {
+      id: "sit-ups",
+      label: "100 sit-ups",
+      category: "Fitness",
+      target: "Daily",
+      status: "pending",
+      currentStreak: 0,
+      bestStreak: 0,
+      week: ["pending", "pending", "pending", "pending", "pending", "pending", "pending"],
+    },
+    {
+      id: "squats",
+      label: "100 squats",
+      category: "Fitness",
+      target: "Daily",
+      status: "pending",
+      currentStreak: 0,
+      bestStreak: 0,
+      week: ["pending", "pending", "pending", "pending", "pending", "pending", "pending"],
+    },
+    {
+      id: "no-refined-sugar",
+      label: "No refined sugar",
+      category: "Nutrition",
+      target: "Daily",
+      status: "pending",
+      currentStreak: 0,
+      bestStreak: 0,
+      week: ["pending", "pending", "pending", "pending", "pending", "pending", "pending"],
+    },
+    {
+      id: "no-alcohol",
+      label: "No alcohol",
+      category: "Lifestyle",
+      target: "Daily",
+      status: "pending",
+      currentStreak: 0,
+      bestStreak: 0,
+      week: ["pending", "pending", "pending", "pending", "pending", "pending", "pending"],
+    },
+    {
+      id: "client-content",
+      label: "Client content shipped",
+      category: "Work",
+      target: "Protect monthly base",
+      status: "pending",
+      currentStreak: 0,
+      bestStreak: 0,
+      week: ["pending", "pending", "pending", "pending", "pending", "pending", "pending"],
+    },
+    {
+      id: "priority-block",
+      label: "Priority batch/admin block",
+      category: "Work",
+      target: "Daily operating block",
+      status: "pending",
+      currentStreak: 0,
+      bestStreak: 0,
+      week: ["pending", "pending", "pending", "pending", "pending", "pending", "pending"],
+    },
+  ],
+  purchaseGoals: [
+    {
+      id: "anita-phone",
+      label: "Anita birthday phone",
+      targetEur: 500,
+      savedEur: 0,
+      deadline: "19 Aug 2026",
+      note: "Birthday purchase target. Exact model and budget to confirm.",
+      priority: "High",
+    },
+    {
+      id: "phone-upgrade",
+      label: "Phone upgrade",
+      targetEur: 500,
+      savedEur: 0,
+      deadline: "Flexible",
+      note: "Vivo X200 Pro or OnePlus 13 shortlist.",
+      priority: "Medium",
+    },
+    {
+      id: "macbook-upgrade",
+      label: "MacBook upgrade",
+      targetEur: 2000,
+      savedEur: 0,
+      deadline: "Flexible",
+      note: "Estimated budget for the required spec.",
+      priority: "Medium",
+    },
+  ],
+  revenueTarget: {
+    currentTargetEur: 5000,
+    stretchTargetEur: 7000,
+    expectedBaseEur: 5575,
+    bonusEstimateEur: null,
+  },
+  allocations: [
+    {
+      label: "Investing",
+      amountEur: 3000,
+      note: "Primary monthly wealth-building allocation.",
+    },
+    {
+      label: "Living expenses",
+      amountEur: 1000,
+      note: "Baseline monthly personal expenses.",
+    },
+    {
+      label: "Travel savings",
+      amountEur: 1000,
+      note: "Dedicated travel reserve.",
+    },
+  ],
+};
 
 export const clients: OpsClient[] = [
   {

@@ -4,6 +4,7 @@ import {
   clients,
   currencySettings,
   financeActions,
+  lifeOS,
   monthlyGoal,
   payments,
   pipeline,
@@ -11,6 +12,7 @@ import {
   revenueLedger,
   workload,
   type FinanceAction,
+  type LifeOSData,
   type OpsAction,
   type OpsClient,
   type OpsProject,
@@ -30,6 +32,7 @@ export type OpsEditableData = {
   monthlyGoal: typeof monthlyGoal;
   revenueLedger: RevenueLedgerItem[];
   financeActions: FinanceAction[];
+  lifeOS: LifeOSData;
   payments: PaymentItem[];
   workload: typeof workload;
 };
@@ -43,6 +46,7 @@ export const defaultOpsData: OpsEditableData = {
   monthlyGoal,
   revenueLedger,
   financeActions,
+  lifeOS,
   payments,
   workload,
 };
@@ -57,6 +61,7 @@ export function normalizeOpsData(data: Partial<OpsEditableData>): OpsEditableDat
     monthlyGoal: data.monthlyGoal ?? defaultOpsData.monthlyGoal,
     revenueLedger: data.revenueLedger ?? defaultOpsData.revenueLedger,
     financeActions: data.financeActions ?? defaultOpsData.financeActions,
+    lifeOS: data.lifeOS ?? defaultOpsData.lifeOS,
     payments: data.payments ?? defaultOpsData.payments,
     workload: data.workload ?? defaultOpsData.workload,
   };

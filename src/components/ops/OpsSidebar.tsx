@@ -8,6 +8,7 @@ const navItems = [
   { label: "Pipeline", href: "/ops#pipeline" },
   { label: "Payments", href: "/ops#payments" },
   { label: "Finances", href: "/ops/finances" },
+  { label: "Life OS", href: "/ops/life-os" },
   { label: "Admin", href: "/ops/admin" },
 ];
 

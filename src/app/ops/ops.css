@@ -889,3 +889,396 @@ body:has(.ops-shell) {
     text-align: left;
   }
 }
+
+.life-overview-panel {
+  border-color: rgba(184, 234, 0, 0.38);
+}
+
+.life-overview-grid {
+  display: grid;
+  grid-template-columns: minmax(260px, 0.85fr) minmax(0, 1.5fr) minmax(220px, 0.75fr);
+  gap: 12px;
+}
+
+.life-score-card,
+.life-snapshot-card,
+.life-habit-strip article,
+.life-hero article,
+.life-checklist article,
+.life-streak-grid article,
+.life-allocation-list article,
+.life-goal-list article,
+.life-note-grid article {
+  border: 1px solid var(--ops-border);
+  border-radius: 18px;
+  background: #fafafa;
+}
+
+.life-score-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px;
+}
+
+.life-score-ring {
+  --value: 0%;
+  width: 104px;
+  height: 104px;
+  flex: 0 0 104px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: conic-gradient(var(--ops-lime-strong) var(--value), rgba(26, 26, 26, 0.08) 0);
+  position: relative;
+}
+
+.life-score-ring::after {
+  content: "";
+  position: absolute;
+  inset: 12px;
+  border-radius: inherit;
+  background: #fff;
+}
+
+.life-score-ring span {
+  position: relative;
+  z-index: 1;
+  color: var(--ops-text);
+  font-size: 18px;
+  font-weight: 850;
+  letter-spacing: -0.04em;
+}
+
+.life-score-card span,
+.life-snapshot-card > span,
+.life-hero span,
+.life-checklist span,
+.life-streak-grid span,
+.life-streak-grid small,
+.life-allocation-list span,
+.life-goal-list span,
+.life-note-grid span,
+.life-habit-strip span {
+  color: var(--ops-faint);
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.life-score-card strong,
+.life-hero strong {
+  display: block;
+  margin: 6px 0;
+  color: var(--ops-text);
+  font-size: clamp(30px, 3vw, 44px);
+  line-height: 0.95;
+  letter-spacing: -0.065em;
+}
+
+.life-score-card p,
+.life-snapshot-card p,
+.life-hero p {
+  margin: 0;
+  color: var(--ops-faint);
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.life-habit-strip {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.life-habit-strip article {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 10px;
+  min-height: 58px;
+  padding: 11px;
+}
+
+.life-habit-strip article[data-status="done"] {
+  border-color: rgba(184, 234, 0, 0.58);
+  background: #fbffeb;
+}
+
+.life-habit-strip svg {
+  color: var(--ops-faint);
+}
+
+.life-habit-strip article[data-status="done"] svg {
+  color: var(--ops-green);
+}
+
+.life-habit-strip strong,
+.life-checklist strong,
+.life-allocation-list strong,
+.life-goal-list strong,
+.life-note-grid strong {
+  display: block;
+  color: var(--ops-text);
+  font-size: 13px;
+  line-height: 1.25;
+}
+
+.life-snapshot-card {
+  padding: 16px;
+}
+
+.life-streak-list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  margin: 12px 0;
+}
+
+.life-streak-list div {
+  padding: 10px;
+  border-radius: 14px;
+  background: #fff;
+}
+
+.life-streak-list strong {
+  display: block;
+  color: var(--ops-text);
+  font-size: 26px;
+  line-height: 1;
+  letter-spacing: -0.06em;
+}
+
+.life-streak-list small {
+  color: var(--ops-faint);
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.life-hero {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+  margin-bottom: 14px;
+}
+
+.life-hero article {
+  min-height: 156px;
+  padding: 18px;
+}
+
+.life-grid-main {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(340px, 0.82fr);
+  gap: 14px;
+  margin-bottom: 14px;
+}
+
+.life-panel {
+  margin-bottom: 14px;
+}
+
+.life-checklist,
+.life-streak-grid,
+.life-allocation-list,
+.life-goal-list {
+  display: grid;
+  gap: 10px;
+}
+
+.life-checklist article,
+.life-allocation-list article {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 13px;
+}
+
+.life-checklist em,
+.life-allocation-list em,
+.life-goal-head em {
+  flex: 0 0 auto;
+  padding: 5px 9px;
+  border-radius: 999px;
+  background: #fff;
+  border: 1px solid var(--ops-border);
+  color: var(--ops-muted);
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 850;
+}
+
+.life-checklist article[data-status="done"] em {
+  background: rgba(204, 255, 0, 0.34);
+  border-color: rgba(184, 234, 0, 0.52);
+  color: var(--ops-text);
+}
+
+.life-streak-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.life-streak-grid article {
+  padding: 13px;
+}
+
+.life-streak-grid article > div {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.life-streak-grid strong {
+  color: var(--ops-text);
+  font-size: 32px;
+  line-height: 1;
+  letter-spacing: -0.06em;
+}
+
+.life-week-table {
+  display: grid;
+  gap: 8px;
+}
+
+.life-week-row {
+  display: grid;
+  grid-template-columns: minmax(180px, 1fr) repeat(7, 34px);
+  gap: 10px;
+  align-items: center;
+  padding: 12px 14px;
+  border: 1px solid var(--ops-border);
+  border-radius: 15px;
+  background: #fafafa;
+}
+
+.life-week-row.header {
+  border-color: transparent;
+  background: transparent;
+  color: var(--ops-faint);
+  font-size: 11px;
+  font-weight: 850;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.life-week-row strong {
+  color: var(--ops-text);
+  font-size: 13px;
+}
+
+.life-dot {
+  width: 13px;
+  height: 13px;
+  justify-self: center;
+  border-radius: 50%;
+  background: rgba(26, 26, 26, 0.12);
+}
+
+.life-dot[data-status="done"] {
+  background: var(--ops-green);
+}
+
+.life-dot[data-status="partial"] {
+  background: #d29700;
+}
+
+.life-dot[data-status="missed"] {
+  background: #d8614c;
+}
+
+.life-goal-list article {
+  padding: 14px;
+}
+
+.life-goal-head,
+.life-goal-meta {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.life-goal-meta {
+  margin-top: 12px;
+}
+
+.life-goal-meta span {
+  padding: 6px 8px;
+  border-radius: 999px;
+  background: #fff;
+  font-size: 11px;
+  font-weight: 850;
+}
+
+.life-note-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.life-note-grid article {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: start;
+  gap: 12px;
+  padding: 16px;
+}
+
+.life-note-grid svg,
+.life-panel svg {
+  color: var(--ops-green);
+}
+
+@media (max-width: 1180px) {
+  .life-overview-grid,
+  .life-grid-main,
+  .life-note-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .life-hero {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 760px) {
+  .life-hero,
+  .life-habit-strip,
+  .life-streak-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .life-score-card {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .life-week-row {
+    grid-template-columns: minmax(130px, 1fr) repeat(7, 22px);
+    gap: 6px;
+    padding: 10px;
+  }
+
+  .life-goal-head,
+  .life-goal-meta,
+  .life-checklist article,
+  .life-allocation-list article {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
+
+.life-status-marker {
+  width: 16px;
+  height: 16px;
+  border: 1px solid rgba(26, 26, 26, 0.16);
+  border-radius: 50%;
+  background: #fff;
+}
+
+.life-habit-strip article[data-status="done"] .life-status-marker {
+  border-color: var(--ops-green);
+  background: var(--ops-green);
+}

@@ -1,5 +1,6 @@
 import { Banknote, CircleDollarSign, Film, UserRoundCheck } from "lucide-react";
 import { ClientList } from "@/components/ops/ClientList";
+import { LifeOSOverview } from "@/components/ops/LifeOSOverview";
 import { MonthlyTarget } from "@/components/ops/MonthlyTarget";
 import { OpsLayout } from "@/components/ops/OpsLayout";
 import { OpsTopbar } from "@/components/ops/OpsTopbar";
@@ -48,6 +49,7 @@ export default async function OpsDashboard() {
       <OpsTopbar title="Overview" />
       <SummaryCards stats={summaryStats} />
       <MonthlyTarget monthlyGoal={data.monthlyGoal} />
+      <LifeOSOverview lifeOS={data.lifeOS} />
       <WorkloadGlance workload={data.workload} />
 
       <section className="ops-layout-two">
