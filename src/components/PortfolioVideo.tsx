@@ -27,16 +27,18 @@ export function PortfolioVideo({ src, poster }: PortfolioVideoProps) {
     }
   }
 
+  const videoSrc = poster ? src : `${src}#t=0.1`;
+
   return (
     <div className="portfolio-video-shell">
       <video
         ref={videoRef}
         className="portfolio-video"
-        src={src}
+        src={videoSrc}
         poster={poster}
         controls={hasStarted && !hasError}
         playsInline
-        preload="none"
+        preload="metadata"
         onPlay={() => setHasStarted(true)}
         onError={() => {
           setHasError(true);
@@ -55,7 +57,7 @@ export function PortfolioVideo({ src, poster }: PortfolioVideoProps) {
       ) : null}
       {hasError ? (
         <div className="video-error-toast" role="status">
-          Run <code>vercel env pull</code> to stream Blob video locally
+          Video file not found in Vercel Blob store yet
         </div>
       ) : null}
     </div>

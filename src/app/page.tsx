@@ -16,73 +16,43 @@ const brandLogos = [
 const blobVideoUrl = (pathname: string) =>
   `/api/blob-video?pathname=${encodeURIComponent(pathname)}`;
 
-const blobPosterUrl = (pathname: string) => {
-  const filename = pathname
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/^-|-$/g, "");
-
-  return `/assets/video-posters/${filename}.jpg`;
-};
-
 const blobVideoItems = (pathnames: string[]): PortfolioVideoItem[] =>
   pathnames.map((pathname) => ({
     src: blobVideoUrl(pathname),
-    poster: blobPosterUrl(pathname),
   }));
 
 const featuredBlobVideos = [
   {
-    pathname: "UGC Content/Clients/Pingo/Snapchat-785767472.mp4",
-    title: "Speak with confidence",
-    client: "Pingo AI",
-    tag: "Language Learning",
+    pathname: "1 - GPT to socials.mp4",
+    title: "GPT to Socials Workflow",
+    client: "AI & Automations",
+    tag: "AI & Tools",
   },
   {
-    pathname: "UGC Content/Clients/Pipo AI/Pipo-AI-Day-11-V2.mp4",
-    title: "AI daily coaching flow",
-    client: "Pipo AI",
-    tag: "AI & Health",
+    pathname: "12 - Claude to socials.mp4",
+    title: "Claude to Socials System",
+    client: "Claude AI",
+    tag: "AI & Tools",
   },
   {
-    pathname: "UGC Content/Clients/Airalo/Video-1-with-captions.mp4",
-    title: "Instant eSIM travel hook",
-    client: "Airalo",
-    tag: "Travel Tech",
+    pathname: "16 - claude paid tools.mp4",
+    title: "Claude vs. Paid AI Tools",
+    client: "Claude AI",
+    tag: "AI & Tools",
   },
 ];
 
-const travelBlobVideos = [
-  "UGC Content/Clients/Airalo/19.6_Video1_PinkShell_Ed.mp4",
-  "UGC Content/Clients/Airalo/airalo 2 - Footie! 9-16 - Captions.mov",
-  "UGC Content/Clients/Airalo/Video 1 - Airport 9-16.mov",
-  "UGC Content/Clients/Airalo/Video-1-with-captions.mp4",
-];
-
-const techAiBlobVideos = [
-  "UGC Content/Clients/Clawbite/0-to-car.mov",
-  "UGC Content/Clients/Clawbite/Clawbite-Today2.m4v",
-];
-
-const languageLearningBlobVideos = [
-  "UGC Content/Clients/Pingo/Snapchat-1004537007.mp4",
-  "UGC Content/Clients/Pingo/Snapchat-1007477723.mp4",
-  "UGC Content/Clients/Pingo/Snapchat-1202039003-1.mp4",
-  "UGC Content/Clients/Pingo/Snapchat-785767472.mp4",
-];
-
-const healthFitnessBlobVideos = [
-  "UGC Content/Clients/Pipo AI/Pipo-AI-Day-10-V4.mp4",
-  "UGC Content/Clients/Pipo AI/Pipo-AI-Day-11-V2.mp4",
-  "UGC Content/Clients/Pipo AI/Pipoday6.mp4",
+const aiAndToolsBlobVideos = [
+  "1 - GPT to socials.mp4",
+  "12 - Claude to socials.mp4",
+  "14 - claude in the last 7 days.mp4",
+  "16 - claude paid tools.mp4",
+  "4 - GPT free for students.mp4",
+  "7 - If you've used Chat.mp4",
 ];
 
 const portfolioCategories = [
-  { label: "All", videos: [] },
-  { label: "Tech & AI", videos: blobVideoItems(techAiBlobVideos) },
-  { label: "Travel", videos: blobVideoItems(travelBlobVideos) },
-  { label: "Language Learning", videos: blobVideoItems(languageLearningBlobVideos) },
-  { label: "Health & Fitness", videos: blobVideoItems(healthFitnessBlobVideos) },
+  { label: "AI & Tools", videos: blobVideoItems(aiAndToolsBlobVideos) },
 ];
 
 const testimonials = [
@@ -230,7 +200,6 @@ export default function Home() {
                 <div key={item.pathname} className="featured-video-card">
                   <PortfolioVideo
                     src={blobVideoUrl(item.pathname)}
-                    poster={blobPosterUrl(item.pathname)}
                     eager={idx === 0}
                   />
                   <div className="featured-video-meta">
@@ -296,7 +265,7 @@ export default function Home() {
             <div className="section-header">
               <h2 className="section-title">Full Portfolio</h2>
               <p className="section-sub">
-                Real content for real brands. Filter by category.
+                Real content for real AI &amp; tech brands.
               </p>
             </div>
 
