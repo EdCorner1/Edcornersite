@@ -1,31 +1,24 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+import type { Metadata } from 'next'
+import './globals.css'
 
 export const metadata: Metadata = {
-  title: "Ed Corner | Tech & AI UGC Creator",
-  description:
-    "Short-form demos, explainers, and creator-led videos for AI, app, tech, and travel brands.",
-};
+  title: 'Ed Corner | AI & Tech UGC Creator',
+  description: 'AI & Tech UGC content that slaps. Short-form demos, explainers, and creator-led videos for AI, app, tech, and travel brands.',
+  icons: {
+    icon: '/favicon.ico',
+  },
+}
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: {
+  children: React.ReactNode
+}) {
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable} scroll-smooth antialiased`}>
-      <body>{children}</body>
+    <html lang="en" className="scroll-smooth antialiased">
+      <body>
+        {children}
+      </body>
     </html>
-  );
+  )
 }

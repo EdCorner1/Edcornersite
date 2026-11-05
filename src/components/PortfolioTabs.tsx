@@ -11,13 +11,23 @@ type PortfolioCategory = {
 const ALL_CATEGORY_LABEL = "All";
 const INITIAL_VIDEO_LIMIT = 4;
 
-function shuffleVideos(videos: PortfolioVideoItem[]) {
-  const dedupedVideos = Array.from(new Map(videos.map((video) => [video.src, video])).values());
+function interleaveCategories(categories: PortfolioCategory[]) {
+  const seen = new Set<string>();
+  const result: PortfolioVideoItem[] = [];
+  const nonEmpty = categories.filter((c) => c.videos.length > 0);
+  const maxLen = Math.max(0, ...nonEmpty.map((c) => c.videos.length));
 
-  return dedupedVideos
-    .map((video) => ({ video, sort: Math.random() }))
-    .sort((a, b) => a.sort - b.sort)
-    .map(({ video }) => video);
+  for (let i = 0; i < maxLen; i++) {
+    for (const category of nonEmpty) {
+      const video = category.videos[i];
+      if (video && !seen.has(video.src)) {
+        seen.add(video.src);
+        result.push(video);
+      }
+    }
+  }
+
+  return result;
 }
 
 type PortfolioTabsProps = {
@@ -29,7 +39,7 @@ export function PortfolioTabs({ categories }: PortfolioTabsProps) {
   const [isExpanded, setIsExpanded] = useState(false);
   const activeCategory = categories[activeIndex] ?? categories[0];
   const allVideos = useMemo(
-    () => shuffleVideos(categories.flatMap((category) => category.videos)),
+    () => interleaveCategories(categories),
     [categories],
   );
   const activeVideos = activeCategory.label === ALL_CATEGORY_LABEL ? allVideos : activeCategory.videos;

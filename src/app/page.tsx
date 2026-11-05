@@ -3,47 +3,19 @@ import { PortfolioVideo, type PortfolioVideoItem } from "@/components/PortfolioV
 import { PortfolioTabs } from "@/components/PortfolioTabs";
 
 const brandLogos = [
-  {
-    alt: "Detris AI",
-    src: "/assets/brands/detris.png",
-  },
-  {
-    alt: "Pingo",
-    src: "/assets/brands/pingo.png",
-  },
-  {
-    alt: "Clawbite.com",
-    src: "/assets/brands/clawbite.png",
-  },
-  {
-    alt: "Polymarket",
-    src: "/assets/brands/polymarket.png",
-  },
-  {
-    alt: "Language app",
-    src: "/assets/brands/language-app.png",
-  },
-  {
-    alt: "Airalo",
-    src: "/assets/brands/airalo.png",
-  },
-  {
-    alt: "Manus",
-    src: "/assets/brands/manus.png",
-  },
-  {
-    alt: "Composio",
-    src: "/assets/brands/composio.png",
-  },
+  { name: "Manus", src: "/assets/brands/manus.png" },
+  { name: "Composio", src: "/assets/brands/composio.png" },
+  { name: "Polymarket", src: "/assets/brands/polymarket.png" },
+  { name: "Pingo AI", src: "/assets/brands/pingo.png" },
+  { name: "Airalo", src: "/assets/brands/airalo.png" },
+  { name: "Detris AI", src: "/assets/brands/detris.png" },
+  { name: "Clawbite", src: "/assets/brands/clawbite.png" },
+  { name: "Language App", src: "/assets/brands/language-app.png" },
 ];
 
-const featuredBlobVideos = [
-  "UGC Content/Clients/Pingo/Snapchat-785767472.mp4",
-  "UGC Content/Clients/Pipo AI/Pipo-AI-Day-11-V2.mp4",
-  "UGC Content/Clients/Airalo/Video-1-with-captions.mp4",
-];
+const blobVideoUrl = (pathname: string) =>
+  `/api/blob-video?pathname=${encodeURIComponent(pathname)}`;
 
-const blobVideoUrl = (pathname: string) => `/api/blob-video?pathname=${encodeURIComponent(pathname)}`;
 const blobPosterUrl = (pathname: string) => {
   const filename = pathname
     .toLowerCase()
@@ -52,11 +24,33 @@ const blobPosterUrl = (pathname: string) => {
 
   return `/assets/video-posters/${filename}.jpg`;
 };
-const blobVideoItems = (pathnames: string[]) =>
+
+const blobVideoItems = (pathnames: string[]): PortfolioVideoItem[] =>
   pathnames.map((pathname) => ({
     src: blobVideoUrl(pathname),
     poster: blobPosterUrl(pathname),
   }));
+
+const featuredBlobVideos = [
+  {
+    pathname: "UGC Content/Clients/Pingo/Snapchat-785767472.mp4",
+    title: "Speak with confidence",
+    client: "Pingo AI",
+    tag: "Language Learning",
+  },
+  {
+    pathname: "UGC Content/Clients/Pipo AI/Pipo-AI-Day-11-V2.mp4",
+    title: "AI daily coaching flow",
+    client: "Pipo AI",
+    tag: "AI & Health",
+  },
+  {
+    pathname: "UGC Content/Clients/Airalo/Video-1-with-captions.mp4",
+    title: "Instant eSIM travel hook",
+    client: "Airalo",
+    tag: "Travel Tech",
+  },
+];
 
 const travelBlobVideos = [
   "UGC Content/Clients/Airalo/19.6_Video1_PinkShell_Ed.mp4",
@@ -83,39 +77,12 @@ const healthFitnessBlobVideos = [
   "UGC Content/Clients/Pipo AI/Pipoday6.mp4",
 ];
 
-const featuredVideos = blobVideoItems(featuredBlobVideos);
-const travelVideos = blobVideoItems(travelBlobVideos);
-const techAiVideos = blobVideoItems(techAiBlobVideos);
-const languageLearningVideos = blobVideoItems(languageLearningBlobVideos);
-const healthFitnessVideos = blobVideoItems(healthFitnessBlobVideos);
-
 const portfolioCategories = [
   { label: "All", videos: [] },
-  { label: "Tech & AI", videos: techAiVideos },
-  { label: "Travel", videos: travelVideos },
-  { label: "Language Learning", videos: languageLearningVideos },
-  { label: "Health & Fitness", videos: healthFitnessVideos },
-];
-
-const serviceCards = [
-  {
-    emoji: "🎬",
-    label: "Creative",
-    title: "Scroll-stopping vertical videos",
-    copy: "Native-feeling TikToks, Reels, and Shorts that blend into the feed, hook fast, and make the product the hero.",
-  },
-  {
-    emoji: "🧠",
-    label: "Strategy",
-    title: "Message-market fit before filming",
-    copy: "Each concept is built around audience pains, objections, and outcomes so the final cut is designed to convert — not just entertain.",
-  },
-  {
-    emoji: "🤝",
-    label: "Execution",
-    title: "Reliable partner, not a one-off creator",
-    copy: "Fast communication, clean handover, and reusable assets your team can run across paid social, landing pages, and email.",
-  },
+  { label: "Tech & AI", videos: blobVideoItems(techAiBlobVideos) },
+  { label: "Travel", videos: blobVideoItems(travelBlobVideos) },
+  { label: "Language Learning", videos: blobVideoItems(languageLearningBlobVideos) },
+  { label: "Health & Fitness", videos: blobVideoItems(healthFitnessBlobVideos) },
 ];
 
 const testimonials = [
@@ -130,7 +97,7 @@ const testimonials = [
     quote:
       "Always tinkering and searching for new concepts that work, Ed has slotted straight into the team and makes some really funny content too!",
     name: "Maggie",
-    role: "Creator campaign manager",
+    role: "Creator Campaign Manager",
     image: "/assets/testimonials/maggie.webp",
   },
   {
@@ -142,117 +109,324 @@ const testimonials = [
   },
 ];
 
-function VideoGrid({ videos }: { videos: PortfolioVideoItem[] }) {
-  return (
-    <div className="portfolio-video-grid">
-      {videos.map((src, index) => (
-        <PortfolioVideo key={`${src.src}-${index}`} src={src.src} poster={src.poster} eager={index === 0} />
-      ))}
-    </div>
-  );
-}
-
-
-
 export default function Home() {
   return (
-    <main id="content">
+    <div className="site">
+      {/* ── NAV ─────────────────────────────────────────────────── */}
       <header className="site-header">
-        <a className="logo-link" href="#content" aria-label="Ed Corner UGC">
-          <img
-            src="/assets/profile/ed-logo.png"
-            alt="Ed Corner UGC"
-          />
-          <span>Ed Corner</span>
-        </a>
-        <nav aria-label="Primary Site Navigation">
-          <a href="#Portfolio">Portfolio</a>
-        </nav>
-        <a className="book-button" href="#GetInTouch">Book a call</a>
+        <div className="container header-inner">
+          <a href="#content" className="logo-link" aria-label="Ed Corner UGC">
+            <span className="logo-text">Ed Corner</span>
+          </a>
+          <nav className="header-nav" aria-label="Primary site navigation">
+            <a href="#HowIWork" className="header-link">
+              How I work
+            </a>
+            <a href="#Portfolio" className="header-link">
+              Portfolio
+            </a>
+            <a href="#Reviews" className="header-link">
+              Reviews
+            </a>
+            <a href="#About" className="header-link">
+              About
+            </a>
+            <a href="#GetInTouch" className="header-link">
+              Contact
+            </a>
+          </nav>
+          <a href="#GetInTouch" className="btn btn-primary header-cta">
+            Book a call
+          </a>
+        </div>
       </header>
 
-      <section className="hero section-wrap">
-        <div className="rating-row" aria-label="Rated 4.6 out of 5">
-          <span>★★★★★</span>
-        </div>
-        <p className="proof-line">Completed over 50 brand deals, with many happy clients 🙂</p>
-        <div className="intro-row">
-          <h2>Hi, I&apos;m Ed</h2>
-          <img
-            src="/assets/profile/ed-headshot.webp"
-            alt=""
-          />
-        </div>
-        <h1>Solo founder and tech UGC creator</h1>
-        <p className="hero-copy">
-          Your new favourite <strong>AI &amp; Tech obsessed UGC creator</strong>{" "}
-          from the UK with 6 years experience in all things product design, marketing &amp; conversion rate optimisation.
-        </p>
-        <a className="lime-button hero-cta" href="#GetInTouch">
-          Book a call
-        </a>
-      </section>
-
-      <section className="brand-section section-wrap" aria-label="Brands I've worked with recently">
-        <h3>Brands I&apos;ve worked with recently</h3>
-        <div className="brand-ticker" aria-label="Brands ticker">
-          <div className="brand-track">
-            {[...brandLogos, ...brandLogos, ...brandLogos, ...brandLogos].map((logo, index) => (
-              <img key={`${logo.alt}-${index}`} src={logo.src} alt={index < brandLogos.length ? logo.alt : ""} />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="section-wrap featured-videos" aria-label="Featured videos">
-        <VideoGrid videos={featuredVideos} />
-      </section>
-
-      <section className="services section-wrap" aria-label="How I help brands win with UGC">
-        <h2>How I help brands win with UGC</h2>
-        <div className="service-grid">
-          {serviceCards.map((card) => (
-            <article key={card.label} className="service-card">
-              <div className="service-emoji" aria-hidden="true">{card.emoji}</div>
-              <div className="service-pill">{card.label}</div>
-              <h3>{card.title}</h3>
-              <p>{card.copy}</p>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section className="section-wrap portfolio-block" id="Portfolio">
-        <PortfolioTabs categories={portfolioCategories} />
-      </section>
-
-      <section className="testimonial-breakout" aria-label="Client reviews">
-        <div className="testimonial-track">
-          {[...testimonials, ...testimonials, ...testimonials].map((testimonial, index) => (
-            <article className="testimonial-card" key={`${testimonial.name}-${index}`}>
-              <div className="testimonial-stars" aria-label="5 stars">★★★★★</div>
-              <blockquote>“{testimonial.quote}”</blockquote>
-              <div className="testimonial-author">
-                <strong>{testimonial.name}</strong>
-                <span>{testimonial.role}</span>
+      <main id="content">
+        {/* ── HERO ───────────────────────────────────────────────── */}
+        <section className="hero section-wrap">
+          <div className="container hero-grid">
+            <div className="hero-text">
+              <div className="hero-intro-row">
+                <span className="hero-greeting">Hi, I&apos;m Ed</span>
+                <img
+                  src="/assets/profile/ed-logo.png"
+                  alt="Ed Corner"
+                  className="hero-greeting-avatar"
+                />
               </div>
-            </article>
-          ))}
+              <div className="hero-proof-badge">
+                <span className="hero-stars" aria-label="5 out of 5 stars">
+                  ★★★★★
+                </span>
+                <span>Completed 50+ brand deals · AI &amp; Tech UGC Creator</span>
+              </div>
+              <h1>
+                AI &amp; Tech UGC
+                <br />
+                <span className="slaps">THAT SLAPS</span>
+              </h1>
+              <p className="hero-sub">
+                Your new favourite <strong>AI &amp; Tech obsessed UGC creator</strong>{" "}
+                from the UK. With over 6 years of experience in product design,
+                marketing, and conversion rate optimisation, I know what it takes
+                to get a customer to actually use your product.
+              </p>
+              <div className="hero-actions">
+                <a href="#GetInTouch" className="btn btn-primary">
+                  Book a call
+                </a>
+                <a href="#Portfolio" className="btn btn-secondary">
+                  See my work
+                </a>
+              </div>
+            </div>
+
+            <div className="hero-image-wrap">
+              <div className="hero-image-panel">
+                <img
+                  src="/assets/profile/ed-hero.jpg"
+                  alt="Ed Corner — AI & Tech UGC Creator"
+                />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ── BRAND TICKER ────────────────────────────────────────── */}
+        <section className="brands" aria-label="Brands I've worked with">
+          <div className="container">
+            <p className="brands-label">Brands I&apos;ve worked with recently</p>
+            <div className="marquee-wrap" aria-label="Brand logos marquee">
+              <div className="marquee">
+                <div className="marquee-track">
+                  {[...brandLogos, ...brandLogos, ...brandLogos].map((brand, i) => (
+                    <div key={`${brand.name}-${i}`} className="brand-tile">
+                      <img
+                        src={brand.src}
+                        alt={i < brandLogos.length ? brand.name : ""}
+                        className="brand-logo-img"
+                      />
+                      <span className="brand-name">{brand.name}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ── RECENT BANGERS ──────────────────────────────────────── */}
+        <section className="best section-wrap">
+          <div className="container">
+            <div className="section-header">
+              <h2 className="section-title">Recent bangers</h2>
+              <p className="section-sub">
+                A few of the vertical cuts that hooked fast and converted recently.
+              </p>
+            </div>
+
+            <div className="grid-3 best-grid">
+              {featuredBlobVideos.map((item, idx) => (
+                <div key={item.pathname} className="featured-video-card">
+                  <PortfolioVideo
+                    src={blobVideoUrl(item.pathname)}
+                    poster={blobPosterUrl(item.pathname)}
+                    eager={idx === 0}
+                  />
+                  <div className="featured-video-meta">
+                    <div>
+                      <p className="featured-video-title">{item.title}</p>
+                      <p className="featured-video-client">{item.client}</p>
+                    </div>
+                    <span className="featured-video-tag">{item.tag}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ── HOW I WORK ──────────────────────────────────────────── */}
+        <section className="work section-wrap" id="HowIWork">
+          <div className="container">
+            <div className="section-header">
+              <h2 className="section-title">How I work</h2>
+              <p className="section-sub">
+                Three things that set my content apart.
+              </p>
+            </div>
+
+            <div className="grid-3 work-grid">
+              <article className="work-card">
+                <div className="work-icon">01</div>
+                <h3>Message-market fit first</h3>
+                <p>
+                  Every concept is built around audience pains, objections, and
+                  outcomes before a single frame is shot. The content is designed
+                  to convert, not just entertain.
+                </p>
+              </article>
+
+              <article className="work-card">
+                <div className="work-icon">02</div>
+                <h3>Native-feeling content</h3>
+                <p>
+                  TikToks, Reels, and Shorts that blend into the feed. Fast hooks,
+                  real energy, and product-as-hero framing that doesn&apos;t feel
+                  like an ad.
+                </p>
+              </article>
+
+              <article className="work-card">
+                <div className="work-icon">03</div>
+                <h3>Reliable partner</h3>
+                <p>
+                  Fast communication, clean handover, and reusable assets your
+                  team can run across paid social, landing pages, and email.
+                  Not a one-off creator.
+                </p>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        {/* ── PORTFOLIO ───────────────────────────────────────────── */}
+        <section className="portfolio section-wrap" id="Portfolio">
+          <div className="container">
+            <div className="section-header">
+              <h2 className="section-title">Full Portfolio</h2>
+              <p className="section-sub">
+                Real content for real brands. Filter by category.
+              </p>
+            </div>
+
+            <PortfolioTabs categories={portfolioCategories} />
+          </div>
+        </section>
+
+        {/* ── CLIENT TESTIMONIALS ─────────────────────────────────── */}
+        <section className="reviews section-wrap" id="Reviews" aria-label="Client reviews">
+          <div className="container">
+            <div className="section-header">
+              <h2 className="section-title">What founders &amp; teams say</h2>
+              <p className="section-sub">
+                Feedback from brands I&apos;ve partnered with on repeatable UGC.
+              </p>
+            </div>
+
+            <div className="grid-3 reviews-grid">
+              {testimonials.map((t) => (
+                <article key={t.name} className="review-card">
+                  <div className="review-stars" aria-label="5 out of 5 stars">
+                    ★★★★★
+                  </div>
+                  <blockquote className="review-quote">
+                    &ldquo;{t.quote}&rdquo;
+                  </blockquote>
+                  <div className="review-author">
+                    <img
+                      src={t.image}
+                      alt={t.name}
+                      className="review-avatar"
+                    />
+                    <div>
+                      <strong className="review-name">{t.name}</strong>
+                      <span className="review-role">{t.role}</span>
+                    </div>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ── 5 THINGS YOU SHOULD KNOW ────────────────────────────── */}
+        <section className="things section-wrap" id="About">
+          <div className="container">
+            <div className="section-header">
+              <h2 className="section-title">5 things you should know about me</h2>
+              <p className="section-sub">
+                The short version of who I am and how I work.
+              </p>
+            </div>
+
+            <ol className="numbered-list">
+              <li>
+                <span>
+                  I&apos;ve spent 6 years in marketing, CRO, and customer experience
+                  before I ever picked up a camera — so every video is built on
+                  how people actually make buying decisions.
+                </span>
+              </li>
+              <li>
+                <span>
+                  I&apos;m an AI &amp; tech specialist. That&apos;s where the
+                  momentum is, and it&apos;s where I&apos;ve found the hooks that
+                  consistently go viral.
+                </span>
+              </li>
+              <li>
+                <span>
+                  I batch-record. One day of filming can cover a week&apos;s worth of
+                  content — so I can move fast without dropping quality.
+                </span>
+              </li>
+              <li>
+                <span>
+                  I&apos;m not here to be a long-term agency dependency. I&apos;ll make
+                  your product look obvious, hand over decent assets, and you can
+                  run them wherever you need.
+                </span>
+              </li>
+              <li>
+                <span>
+                  I&apos;m building toward YouTube long-form full-time. Short-form is
+                  the engine right now, but the endgame is bigger content — which
+                  means I&apos;m motivated to make every piece of short-form count.
+                </span>
+              </li>
+            </ol>
+          </div>
+        </section>
+
+        {/* ── CTA + CAL.COM EMBED ─────────────────────────────────── */}
+        <section className="cta section-wrap" id="GetInTouch">
+          <div className="container">
+            <div className="cta-inner">
+              <div className="cta-text">
+                <h2 className="cta-heading">
+                  Let&apos;s build something that actually converts
+                </h2>
+                <p className="cta-sub">
+                  Book a 30-minute call below or send an email — no pressure, no
+                  generic pitch. Just a real conversation about your product and
+                  your audience.
+                </p>
+              </div>
+              <div className="cta-actions">
+                <a
+                  href="mailto:Hello@edcorner.co.uk"
+                  className="btn btn-primary cta-btn"
+                >
+                  Send me an email ✉️
+                </a>
+              </div>
+            </div>
+
+            <CalEmbed />
+          </div>
+        </section>
+      </main>
+
+      {/* ── FOOTER ─────────────────────────────────────────────────── */}
+      <footer className="site-footer">
+        <div className="container footer-inner">
+          <p>Made with good food and energy</p>
+          <p className="footer-copy">
+            © {new Date().getFullYear()} Ed Corner. All rights reserved.
+          </p>
         </div>
-      </section>
-
-      <section className="contact section-wrap" id="GetInTouch">
-        <h2>Let&apos;s build something amazing together</h2>
-        <p>Book a call with me below or click to send an email</p>
-        <a className="lime-button message-button" href="mailto:Hello@edcorner.co.uk">
-          Send me a message ✉️
-        </a>
-        <CalEmbed />
-      </section>
-
-      <footer className="site-footer section-wrap">
-        <p>Made with good food and energy</p>
       </footer>
-    </main>
+    </div>
   );
 }
