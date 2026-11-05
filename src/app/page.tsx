@@ -1,6 +1,9 @@
+import { list } from "@vercel/blob";
 import { CalEmbed } from "@/components/CalEmbed";
 import { PortfolioVideo, type PortfolioVideoItem } from "@/components/PortfolioVideo";
 import { PortfolioTabs } from "@/components/PortfolioTabs";
+
+export const dynamic = "force-dynamic";
 
 const brandLogos = [
   { name: "Manus", src: "/assets/brands/manus.png" },
@@ -21,39 +24,47 @@ const blobVideoItems = (pathnames: string[]): PortfolioVideoItem[] =>
     src: blobVideoUrl(pathname),
   }));
 
-const featuredBlobVideos = [
-  {
-    pathname: "1 - GPT to socials.mp4",
-    title: "GPT to Socials Workflow",
-    client: "AI & Automations",
-    tag: "AI & Tools",
-  },
-  {
-    pathname: "12 - Claude to socials.mp4",
-    title: "Claude to Socials System",
-    client: "Claude AI",
-    tag: "AI & Tools",
-  },
-  {
-    pathname: "16 - claude paid tools.mp4",
-    title: "Claude vs. Paid AI Tools",
-    client: "Claude AI",
-    tag: "AI & Tools",
-  },
+const campaignStats = [
+  { label: "Instagram", value: "1.25k", highlight: false },
+  { label: "TikTok", value: "8k", highlight: false },
+  { label: "Facebook", value: "8.2k", highlight: false },
+  { label: "Total Followers", value: "17.45k", highlight: true },
+  { label: "Last Month's Views", value: "990k", highlight: true },
 ];
 
-const aiAndToolsBlobVideos = [
-  "1 - GPT to socials.mp4",
-  "12 - Claude to socials.mp4",
-  "14 - claude in the last 7 days.mp4",
-  "16 - claude paid tools.mp4",
-  "4 - GPT free for students.mp4",
-  "7 - If you've used Chat.mp4",
-];
+function parseBangerFilename(pathname: string) {
+  const filename = (pathname.split("/").pop() ?? pathname).replace(
+    /\.(mp4|mov|m4v|webm)$/i,
+    "",
+  );
+  const viewsMatch = filename.match(/(?:[-–_\s]+)?(\d+(?:\.\d+)?[kKmM])\b/);
+  const viewsRaw = viewsMatch ? viewsMatch[1].toLowerCase() : null;
+  const viewsNum = viewsRaw
+    ? parseFloat(viewsRaw) * (viewsRaw.endsWith("m") ? 1_000_000 : 1_000)
+    : 0;
 
-const portfolioCategories = [
-  { label: "AI & Tools", videos: blobVideoItems(aiAndToolsBlobVideos) },
-];
+  const cleanTitle = (
+    viewsMatch ? filename.replace(viewsMatch[0], "") : filename
+  )
+    .replace(/^Edits_/i, "")
+    .replace(/_\d{8}_\d{6}$/, "")
+    .replace(/[_-]+/g, " ")
+    .trim();
+
+  return {
+    title: cleanTitle || "Campaign Banger",
+    views: viewsRaw ? `${viewsRaw} views` : "Featured",
+    viewsNum,
+  };
+}
+
+function isVideoBlob(pathname: string, size: number) {
+  return (
+    size > 0 &&
+    !pathname.endsWith("/") &&
+    /\.(mp4|mov|m4v|webm)$/i.test(pathname)
+  );
+}
 
 const testimonials = [
   {
@@ -79,7 +90,48 @@ const testimonials = [
   },
 ];
 
-export default function Home() {
+export default async function Home() {
+  const inventory = await list({ limit: 200 }).catch(() => ({ blobs: [] }));
+  const videoBlobs = inventory.blobs.filter((b) => isVideoBlob(b.pathname, b.size));
+
+  // Videos inside Composio/Bangers/ (or fallback to Composio/ if Bangers is still being uploaded)
+  const composioBangerBlobs = videoBlobs.filter((b) =>
+    b.pathname.toLowerCase().startsWith("composio/bangers/"),
+  );
+  const composioAllBlobs = videoBlobs.filter((b) =>
+    b.pathname.toLowerCase().startsWith("composio/"),
+  );
+
+  const selectedBangers = (
+    composioBangerBlobs.length > 0
+      ? composioBangerBlobs
+      : composioAllBlobs.length > 0
+        ? composioAllBlobs
+        : videoBlobs
+  ).slice(0, 3);
+
+  const featuredBlobVideos = selectedBangers
+    .map((b) => {
+      const parsed = parseBangerFilename(b.pathname);
+      return {
+        pathname: b.pathname,
+        title: parsed.title,
+        views: parsed.views,
+        viewsNum: parsed.viewsNum,
+      };
+    })
+    .sort((a, b) => b.viewsNum - a.viewsNum);
+
+  const bangerPathSet = new Set(featuredBlobVideos.map((b) => b.pathname));
+  const portfolioBlobs = videoBlobs.filter((b) => !bangerPathSet.has(b.pathname));
+  const portfolioVideoPaths = (
+    portfolioBlobs.length > 0 ? portfolioBlobs : videoBlobs
+  ).map((b) => b.pathname);
+
+  const portfolioCategories = [
+    { label: "AI & Tools", videos: blobVideoItems(portfolioVideoPaths) },
+  ];
+
   return (
     <div className="site">
       {/* ── NAV ─────────────────────────────────────────────────── */}
@@ -185,14 +237,56 @@ export default function Home() {
           </div>
         </section>
 
-        {/* ── RECENT BANGERS ──────────────────────────────────────── */}
-        <section className="best section-wrap">
+        {/* ── CURRENT CAMPAIGN #1: COMPOSIO ──────────────────────── */}
+        <section className="campaign section-wrap" id="CurrentCampaign">
           <div className="container">
-            <div className="section-header">
-              <h2 className="section-title">Recent bangers</h2>
-              <p className="section-sub">
-                A few of the vertical cuts that hooked fast and converted recently.
-              </p>
+            {/* Top Header Row: Kicker + Logo/Title + Subheading + CTA */}
+            <div className="campaign-top">
+              <div className="campaign-brand-block">
+                <span className="campaign-kicker">Current Campaign #1</span>
+                <div className="campaign-title-row">
+                  <img
+                    src="/assets/brands/composio.png"
+                    alt="Composio logo"
+                    className="campaign-logo"
+                  />
+                  <h2 className="campaign-title">Composio</h2>
+                </div>
+                <p className="campaign-sub">
+                  The action &amp; integration layer for AI agents — letting
+                  Claude, Cursor, and custom AI workflows connect to 250+ tools
+                  and APIs out of the box.
+                </p>
+              </div>
+
+              <div className="campaign-cta-wrap">
+                <a
+                  href="https://composio.dev/for-you"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="btn btn-primary campaign-cta"
+                >
+                  Try Composio ↗
+                </a>
+              </div>
+            </div>
+
+            {/* Single Clean Stats Bar */}
+            <div className="campaign-stats-bar" aria-label="Campaign reach and views">
+              {campaignStats.map((stat) => (
+                <div
+                  key={stat.label}
+                  className={`campaign-stat-item ${stat.highlight ? "is-highlight" : ""}`}
+                >
+                  <strong className="campaign-stat-value">{stat.value}</strong>
+                  <span className="campaign-stat-label">{stat.label}</span>
+                </div>
+              ))}
+            </div>
+
+            {/* 3 Recent Bangers */}
+            <div className="campaign-bangers-head">
+              <h3>Recent bangers</h3>
             </div>
 
             <div className="grid-3 best-grid">
@@ -203,11 +297,8 @@ export default function Home() {
                     eager={idx === 0}
                   />
                   <div className="featured-video-meta">
-                    <div>
-                      <p className="featured-video-title">{item.title}</p>
-                      <p className="featured-video-client">{item.client}</p>
-                    </div>
-                    <span className="featured-video-tag">{item.tag}</span>
+                    <p className="featured-video-title">{item.title}</p>
+                    <span className="featured-video-tag">{item.views}</span>
                   </div>
                 </div>
               ))}
