@@ -31,8 +31,12 @@ export async function GET(request: NextRequest) {
   const contentLength = result.headers.get("content-length");
   const acceptRanges = result.headers.get("accept-ranges") || "bytes";
 
+  const rawContentType = result.blob.contentType || "video/mp4";
+  const contentType =
+    rawContentType === "video/quicktime" ? "video/mp4" : rawContentType;
+
   const responseHeaders: Record<string, string> = {
-    "Content-Type": result.blob.contentType || "video/mp4",
+    "Content-Type": contentType,
     "Accept-Ranges": acceptRanges,
     "Cache-Control": "public, max-age=3600, stale-while-revalidate=86400",
     "X-Content-Type-Options": "nosniff",
